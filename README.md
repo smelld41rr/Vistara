@@ -4,13 +4,15 @@ A calmer web, through glass. An offline-first Manifest V3 Chrome extension inspi
 
 ## Get started in 60 seconds
 
-1. Use Node.js 22 or 24 LTS. In this repository run `npm install` and `npm run build` (or use the included built `dist/`).
-2. Open `chrome://extensions` in Google Chrome. Enable **Developer mode**.
-3. Choose **Load unpacked**, then select the **dist** folder, not the repository root or ZIP file.
-4. Reload an ordinary website, pin Vistara using Chrome's Extensions menu, and open its popup.
-5. Pick a theme. Try the sliders or Before / After. Open **Make it yours** for website rules and advanced settings.
+1. Download the project using GitHub **Code → Download ZIP**, then **Extract All** in Windows.
+2. Open `chrome://extensions` in Google Chrome and enable **Developer mode**.
+3. Choose **Load unpacked**, then select the extracted **Vistara-main** folder containing `manifest.json`. This works directly: no build or Node.js installation is required.
+4. Alternatively, select its **dist** folder. Both folder layouts are supported and generated from the same manifest template.
+5. Reload your website tabs, pin Vistara using Chrome's Extensions menu, and open its popup.
 
-For the ZIP, extract it first; the manifest sits at the extracted folder's root. Load that extracted folder. Never select the ZIP directly. Enterprise-managed browsers may forbid unpacked extensions; that requires the browser administrator's policy change.
+If Windows creates `Downloads/Vistara-main/Vistara-main`, choose the **inner folder containing manifest.json**. Do not select the ZIP or an outer folder containing only another Vistara-main folder. The extension-only ZIP in `release/` is also loadable after extraction; select its folder containing `manifest.json`.
+
+For development, use Node.js 22 or 24 LTS, run `npm install`, then `npm run build`. The build refreshes both root and dist manifests. Enterprise-managed browsers may forbid unpacked extensions; that requires the browser administrator's policy change.
 
 ## What you get
 

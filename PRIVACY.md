@@ -1,6 +1,6 @@
 # Privacy
 
-Vistara - Theme World v1.0.0 is a local appearance extension with no backend, analytics, tracking, remote fonts, remote images or remotely hosted executable code. Runtime code initiates no network requests.
+Vistara - Theme World v1.0.1 is a local appearance extension with no backend, analytics, tracking, remote fonts, remote images or remotely hosted executable code. Runtime code initiates no network requests.
 
 The content script checks URL eligibility, presence of sensitive form types, semantic roles and known selectors to find containers to style. It never reads input values, private messages or document text for collection. It does not transmit, summarize, log, sell or store page content, credentials, cookies, browsing history or account data. The active tab hostname is displayed locally to help manage site-specific preferences. It is not sent anywhere.
 

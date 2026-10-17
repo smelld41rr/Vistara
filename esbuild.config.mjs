@@ -3,6 +3,25 @@ import { mkdir, cp, copyFile, readFile, access } from "node:fs/promises";
 await mkdir("dist", { recursive: true });
 await cp("public", "dist", { recursive: true });
 await copyFile("manifest.template.json", "dist/manifest.json");
+// The GitHub source ZIP is also loadable directly. Keep its manifest generated
+// from the same source, with every extension resource pointing into dist/.
+const rootManifest = JSON.parse(
+  await readFile("manifest.template.json", "utf8"),
+);
+const prefix = (path) => `dist/${path}`;
+rootManifest.action.default_popup = prefix(rootManifest.action.default_popup);
+for (const size of Object.keys(rootManifest.action.default_icon))
+  rootManifest.action.default_icon[size] = prefix(
+    rootManifest.action.default_icon[size],
+  );
+rootManifest.options_page = prefix(rootManifest.options_page);
+for (const size of Object.keys(rootManifest.icons))
+  rootManifest.icons[size] = prefix(rootManifest.icons[size]);
+for (const script of rootManifest.content_scripts)
+  script.js = script.js.map(prefix);
+await import("node:fs/promises").then(({ writeFile }) =>
+  writeFile("manifest.json", JSON.stringify(rootManifest, null, 2) + "\n"),
+);
 for (const name of ["popup", "options"]) {
   await mkdir(`dist/${name}`, { recursive: true });
   await copyFile(`src/${name}/index.html`, `dist/${name}/index.html`);

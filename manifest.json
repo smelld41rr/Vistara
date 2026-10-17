@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "Vistara - Theme World",
+  "version": "1.0.1",
+  "description": "A calmer web, through glass. Local themes, thoughtful controls, and per-site appearance.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "dist/popup/index.html",
+    "default_icon": {
+      "16": "dist/icons/icon16.png",
+      "32": "dist/icons/icon32.png"
+    }
+  },
+  "options_page": "dist/options/index.html",
+  "icons": {
+    "16": "dist/icons/icon16.png",
+    "32": "dist/icons/icon32.png",
+    "48": "dist/icons/icon48.png",
+    "128": "dist/icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ],
+      "js": [
+        "dist/content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  }
+}

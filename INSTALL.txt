@@ -1,0 +1,16 @@
+VISTARA - THEME WORLD 1.0.1
+
+1. Download ZIP from GitHub and choose Extract All in Windows.
+2. Open chrome://extensions in Chrome.
+3. Turn Developer mode ON.
+4. Click Load unpacked.
+5. Select THIS folder: the one containing this INSTALL.txt and manifest.json.
+   The dist folder inside also works.
+6. Reload your website tabs after installation.
+
+IMPORTANT: If Windows made two Vistara-main folders, open the outer one and
+select the inner folder containing manifest.json. Never select the ZIP itself.
+
+No npm install or build is needed to use the prebuilt extension.
+If replacing an old copy, extract into a NEW folder first, then remove the old
+Vistara entry from Chrome and load the new folder. Keep the new folder on disk.
