@@ -8,7 +8,7 @@ async function verifyFolder(folder: string) {
     await readFile(resolve(root, "manifest.json"), "utf8"),
   );
   assert.equal(manifest.manifest_version, 3);
-  assert.equal(manifest.version, "1.0.1");
+  assert.equal(manifest.version, "1.0.2");
   const entries = [
     manifest.action.default_popup,
     manifest.options_page,

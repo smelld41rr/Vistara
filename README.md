@@ -58,7 +58,7 @@ For browser tests, the installed Chromium's administrator policy blocks unpacked
 
 ## Permissions and privacy
 
-`storage` saves preferences; `activeTab` identifies the selected host when the popup is invoked and supports tab-local commands. HTTP/HTTPS content-script matches provide styling access to eligible pages. Chrome displays broad site-access wording because styling requires DOM access. No `tabs`, scripting, history, cookie, clipboard or request-interception permissions are requested. No page text or form values are collected. Everything runs locally, and settings may use your browser's own Chrome Sync. See [PRIVACY.md](PRIVACY.md).
+`storage` saves preferences; `activeTab` identifies the selected host when the popup is invoked and supports tab-local commands. HTTP/HTTPS content-script matches provide styling access to eligible pages. Chrome displays broad site-access wording because styling requires DOM access. `scripting` attaches the packaged content script to an already-open active tab when the popup cannot reach it. It uses the popup's temporary `activeTab` grant; it does not bypass denied or protected pages. No `tabs`, history, cookie, clipboard or request-interception permissions are requested. No page text or form values are collected. Everything runs locally, and settings may use your browser's own Chrome Sync. See [PRIVACY.md](PRIVACY.md).
 
 Chrome's tab strip, toolbar, address bar, native dialogs, `chrome://` pages, Web Store, browser PDF viewer, closed shadow roots and inaccessible frames cannot be styled. Only top-level HTTP/HTTPS documents are targeted. Native website styles, site updates, CSP behavior and third-party widgets can limit coverage. A universal visual tool cannot promise identical pixels on arbitrary websites.
 
@@ -71,7 +71,7 @@ At most 160 non-nested surfaces are tracked per page. Added DOM subtrees are coa
 ## Troubleshooting
 
 - **Not available on this page:** Chrome protects this URL, or it isn't HTTP/HTTPS.
-- **Page access unavailable:** allow the site under the extension's “This can read and change site data” menu, then reload the page. Initial installation does not inject into tabs that were already loaded.
+- **Cannot connect to this page:** the popup first attempts to attach its bundled content script using the active-tab grant. If Chrome denies access, open Manage extension → Site access → On all sites (or allow the specific site), reload the website, then choose Connect to this page / Retry. The detailed Chrome error is shown. Pages open before installation or an extension update may need a reload.
 - **Theme looks unchanged:** inspect exact/parent site overrides and exclusions. The generic fallback deliberately styles very few surfaces.
 - **Poor contrast or slow scrolling:** choose Compatibility, lower blur, use solid contrast surfaces, or turn off that website. Some author-defined colors remain intentionally untouched.
 - **Sync warning:** the local copy was saved; Chrome Sync is unavailable or quota-limited. Retry later. JSON export provides an independent backup.

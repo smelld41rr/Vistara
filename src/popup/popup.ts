@@ -1,3 +1,4 @@
+import { connectTab } from "../shared/connection";
 import { init, save } from "../shared/storage";
 import { defaults, eligible, resolve, type Settings } from "../shared/settings";
 import {
@@ -33,17 +34,25 @@ function update() {
 async function checkStatus() {
   if (!tab?.id || !eligible(tab.url ?? "")) return;
   try {
-    const response = await chrome.tabs.sendMessage(tab.id, {
-      type: "VISTARA_STATUS",
-    });
-    if (response.status.startsWith("Safety")) notice(response.status);
+    const response = await connectTab(tab.id);
+    if (/error/i.test(response.status)) notice(response.status, true);
+    else if (
+      response.status.startsWith("Safety") ||
+      response.status === "Page opted out"
+    )
+      notice(response.status);
     else if (!resolve(settings, tab.url ?? "").enabled)
       notice(resolve(settings, tab.url ?? "").reason);
-  } catch {
-    notice(
-      "Page access unavailable. Grant site access in Chrome, then reload this page.",
-      true,
-    );
+    else
+      notice(
+        response.status === "Inactive"
+          ? "Connected. Choose a theme to begin."
+          : response.status,
+      );
+    (document.querySelector("#repair") as HTMLButtonElement).hidden = true;
+  } catch (error) {
+    notice(String(error), true);
+    (document.querySelector("#repair") as HTMLButtonElement).hidden = false;
   }
 }
 function render() {
@@ -113,6 +122,7 @@ document.querySelector("#preset-reset")!.addEventListener("click", () => {
 document.querySelector("#before")!.addEventListener("click", async () => {
   try {
     if (!tab?.id) return;
+    await connectTab(tab.id);
     const result = await chrome.tabs.sendMessage(tab.id, {
       type: "VISTARA_BEFORE",
     });
@@ -150,3 +160,14 @@ window.addEventListener("pagehide", () => {
   if (settings) void save(settings);
 });
 start().catch((e) => notice(String(e), true));
+
+document.querySelector("#repair")!.addEventListener("click", async () => {
+  const button = document.querySelector("#repair") as HTMLButtonElement;
+  button.disabled = true;
+  notice("Connecting to this page…");
+  try {
+    await checkStatus();
+  } finally {
+    button.disabled = false;
+  }
+});

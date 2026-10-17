@@ -5,8 +5,8 @@
 - `npm install --cache /tmp/vistara-npm --no-audit --no-fund`: dependencies installed with a local writable cache. The machine's default npm cache directory was unavailable; no verification was disabled.
 - `npm run build`: passed. esbuild emits three local JavaScript bundles, copies HTML/CSS/icons/manifest and verifies manifest entrypoint paths.
 - `npm run lint`: passed, strict TypeScript checking.
-- `npm test`: **18 tests passed**, zero failed/skipped. Covers schema normalization, dangerous keys, size/enum/range validation, hostname boundaries, protected pages, exact/parent/default precedence, OFF/exclusions, accessibility precedence, legacy migration, adapter selection, fresh-device Sync, newer local fallback after quota failure, local-rule preservation and backup of unsupported settings.
-- `npm run test:browser`: **19 browser scenarios passed**, zero uncaught page exceptions in the tested flows. Results are recorded in `browser-results.json` with browser version and timestamp.
+- `npm test`: **24 tests passed**, zero failed/skipped. Covers schema normalization, dangerous keys, size/enum/range validation, hostname boundaries, protected pages, exact/parent/default precedence, OFF/exclusions, accessibility precedence, legacy migration, adapter selection, fresh-device Sync, newer local fallback after quota failure, local-rule preservation and backup of unsupported settings.
+- `npm run test:browser`: **20 browser scenarios passed**, zero uncaught page exceptions in the tested flows. Results are recorded in `browser-results.json` with browser version and timestamp.
 
 The browser suite runs the **compiled distribution JavaScript** in real Chromium pages, using local representative website fixtures and simulated Chrome storage/tab APIs. It is a bundle-integration suite, not a successfully installed MV3 extension test. Attempting native installation revealed the machine's administrative `ExtensionInstallBlocklist: ["*"]`; the CDP loader explicitly reported that loading unpacked extensions is disabled by the administrator. That policy was left intact.
 
@@ -58,3 +58,9 @@ A buildable development extension and installable file package are delivered. Be
 ## v1.0.1 packaging fix
 
 The source ZIP now contains a generated root `manifest.json` that points at the prebuilt `dist/` resources. Both the extracted project folder and `dist/` can be selected in Chrome. Three added package tests check both manifests, every manifest resource, and relative popup/options scripts, styles and images. `INSTALL.txt` explains Windows double-nested extraction folders. The build and TypeScript check pass; 18 current unit/package tests pass. Runtime code is unchanged from the previously validated browser scenarios; the options version label was refreshed.
+
+## v1.0.2 existing-tab connection recovery
+
+The popup previously reported every missing receiver or handshake failure as a site-permission error. It now retries by attaching its packaged content script using `scripting` and the user-invoked `activeTab` grant, then verifies the response. A visible retry action and actual Chrome error are shown if attachment fails. Initial replies wait for settings/engine readiness. Content initialization is guarded against duplicate declarative/runtime attachment. No persistent host permissions were added and denied/protected pages remain protected.
+
+Six connection tests cover healthy/no-duplicate behavior, missing-receiver recovery, permission denial, invalid replies, missing package data and root-manifest script paths. The Chromium harness now recovers an initially unstyled tab through the compiled popup and verifies singleton listeners/styles after reinjection. Current checks: build, TypeScript, 24 unit/package tests, 20 browser fixture scenarios, and the separate contrast/restoration test pass. Real Chrome permission enforcement remains a manual check because the local managed browser blocks unpacked extensions.

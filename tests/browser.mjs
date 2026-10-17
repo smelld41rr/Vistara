@@ -58,6 +58,16 @@ await context.exposeBinding(
     );
   },
 );
+await context.exposeBinding("vistaraInject", async () => {
+  const target = context
+    .pages()
+    .filter((p) => /youtube|chatgpt|fixture.test/.test(p.url()))
+    .at(-1);
+  if (!target) throw Error("No eligible tab");
+  await target.addScriptTag({
+    content: await readFile(resolve(dist, "content.js"), "utf8"),
+  });
+});
 await context.addInitScript(() => {
   window.__storageListeners = [];
   window.__messageListeners = [];
@@ -71,7 +81,9 @@ await context.addInitScript(() => {
       sync: area("sync"),
       onChanged: { addListener: (fn) => window.__storageListeners.push(fn) },
     },
+    scripting: { executeScript: () => window.vistaraInject() },
     runtime: {
+      getManifest: () => ({ content_scripts: [{ js: ["content.js"] }] }),
       onMessage: { addListener: (fn) => window.__messageListeners.push(fn) },
       openOptionsPage: () => Promise.resolve(),
     },
@@ -518,6 +530,34 @@ try {
     await wait();
     assert.equal(await page.locator("[data-gf-surface]").count(), 0);
   });
+  await check(
+    "popup repairs a missing content script in an already-open tab",
+    async () => {
+      await context.route("http://fixture.test/recover", (r) =>
+        r.fulfill({
+          contentType: "text/html",
+          body: '<!doctype html><body><header role="banner">Recover this tab</header></body>',
+        }),
+      );
+      await page.goto("http://fixture.test/recover");
+      const popup = await context.newPage();
+      await popup.goto("https://vistara-ui.test/popup/index.html");
+      await page.waitForSelector("[data-gf-surface]");
+      await popup.waitForFunction(() =>
+        document.querySelector("#notice").textContent.includes("Active"),
+      );
+      assert.equal(await popup.locator("#repair").isVisible(), false);
+      await page.addScriptTag({
+        content: await readFile(resolve(dist, "content.js"), "utf8"),
+      });
+      assert.equal(
+        await page.evaluate(() => window.__messageListeners.length),
+        1,
+      );
+      assert.equal(await page.locator("#vistara-styles").count(), 1);
+      await popup.close();
+    },
+  );
   await check("no uncaught extension or fixture page errors", async () =>
     assert.deepEqual(errors, []),
   );

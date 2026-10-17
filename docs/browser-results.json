@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-17T16:03:56.593Z",
+  "date": "2026-10-17T17:00:54.703Z",
   "browser": "154.0.8037.57",
   "type": "Compiled bundles in Chromium with simulated Chrome APIs and local representative fixtures. Administrator policy blocks unpacked-extension installation. Not a real extension install or live-site test.",
   "passed": [
@@ -21,6 +21,7 @@
     "ambient control updates page tokens; surface cap and disable restoration",
     "Sync quota failure preserves new local preferences after reopening options",
     "page opt-out prevents styling",
+    "popup repairs a missing content script in an already-open tab",
     "no uncaught extension or fixture page errors"
   ],
   "errors": []

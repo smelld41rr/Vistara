@@ -17,7 +17,7 @@ The supplied Markdown and 19-page PDF describe the same GlassFlow product; the P
 
 ## Deliberate architecture differences
 
-The project uses `shared/settings.ts` for types, normalization, migrations and precedence rather than splitting a small schema across many files. `shared/ui.ts` provides shared DOM-based controls. The seven adapter definitions share `adapters/index.ts`; each definition is versioned and isolated by selector. `content/styles.ts` holds scoped CSS. No background service worker, scripting permission, remote fonts, React runtime, or image assets are necessary. Static gradients make motion handling and licensing straightforward.
+The project uses `shared/settings.ts` for types, normalization, migrations and precedence rather than splitting a small schema across many files. `shared/ui.ts` provides shared DOM-based controls. The seven adapter definitions share `adapters/index.ts`; each definition is versioned and isolated by selector. `content/styles.ts` holds scoped CSS. No background service worker, remote fonts, React runtime, or image assets are necessary. Since v1.0.2, the scripting permission supports active-tab recovery when declarative injection did not run. Static gradients make motion handling and licensing straightforward.
 
 ## Limits and deferred optional work
 

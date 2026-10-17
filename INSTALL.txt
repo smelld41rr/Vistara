@@ -1,4 +1,4 @@
-VISTARA - THEME WORLD 1.0.1
+VISTARA - THEME WORLD 1.0.2
 
 1. Download ZIP from GitHub and choose Extract All in Windows.
 2. Open chrome://extensions in Chrome.
@@ -14,3 +14,7 @@ select the inner folder containing manifest.json. Never select the ZIP itself.
 No npm install or build is needed to use the prebuilt extension.
 If replacing an old copy, extract into a NEW folder first, then remove the old
 Vistara entry from Chrome and load the new folder. Keep the new folder on disk.
+
+If the popup cannot connect: Manage extension > Site access > allow the site.
+Reload the website, then reopen Vistara. v1.0.2 also retries script attachment
+automatically when the popup is opened, using activeTab permission.
