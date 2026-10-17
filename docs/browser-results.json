@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-17T16:03:56.593Z",
+  "browser": "154.0.8037.57",
+  "type": "Compiled bundles in Chromium with simulated Chrome APIs and local representative fixtures. Administrator policy blocks unpacked-extension installation. Not a real extension install or live-site test.",
+  "passed": [
+    "compiled content bundle starts and selects YouTube adapter",
+    "host buttons and form values remain functional",
+    "global off removes styles and tokens; on restores without reload",
+    "theme and sliders update the open page and persist",
+    "compatibility disables blur and cards",
+    "ChatGPT adapter preserves code, input, and SPA navigation",
+    "site rule overrides global and remains off after reload",
+    "per-site removal restores globals; dynamic nodes styled once",
+    "import rejects unsafe data and requires confirmation for valid replacement",
+    "preset create, rename, duplicate, apply and delete",
+    "sensitive form auto-pauses without reading values",
+    "popup loads, preview and theme controls work",
+    "narrow options and reduced motion remain usable",
+    "all remaining adapters and generic fallback mount and unmount",
+    "before/after removes effects temporarily and restores them",
+    "ambient control updates page tokens; surface cap and disable restoration",
+    "Sync quota failure preserves new local preferences after reopening options",
+    "page opt-out prevents styling",
+    "no uncaught extension or fixture page errors"
+  ],
+  "errors": []
+}

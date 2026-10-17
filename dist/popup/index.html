@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vistara — Theme World</title>
+    <link rel="stylesheet" href="../ui.css" />
+  </head>
+  <body class="popup">
+    <header class="topbar">
+      <div class="brand">
+        <img src="../icons/icon48.png" alt="" />
+        <div>
+          <h1>Vistara<span style="color: #91b3ff">.</span></h1>
+          <small>Theme World</small>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="state" class="status">Loading</span>
+        <div id="master"></div>
+        <button id="settings" class="icon-button" aria-label="Open settings">
+          ⚙
+        </button>
+      </div>
+    </header>
+    <main>
+      <div id="preview"></div>
+      <div id="controls"></div>
+      <div id="site" class="site-panel"></div>
+      <div class="quick-actions">
+        <button id="before" class="button" aria-pressed="false">
+          ◐ Before / After</button
+        ><button id="preset-reset" class="button">↺ Reset appearance</button>
+      </div>
+      <div id="notice" role="status" aria-live="polite"></div>
+    </main>
+    <footer class="footer">
+      <span>Runs locally · No tracking</span
+      ><button id="open-options" class="text-button">Make it yours ↗</button>
+    </footer>
+    <script src="popup.js"></script>
+  </body>
+</html>

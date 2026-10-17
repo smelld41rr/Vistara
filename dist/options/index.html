@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vistara — Your world, reimagined</title>
+    <link rel="stylesheet" href="../ui.css" />
+  </head>
+  <body>
+    <div class="options-layout">
+      <aside class="sidebar">
+        <div class="brand">
+          <img src="../icons/icon48.png" alt="" />
+          <div>
+            <h1>Vistara.</h1>
+            <small>Theme World</small>
+          </div>
+        </div>
+        <nav aria-label="Settings">
+          <a class="nav-link active" href="#appearance"
+            >◈ <span>Appearance</span></a
+          ><a class="nav-link" href="#sites">◎ <span>Website rules</span></a
+          ><a class="nav-link" href="#presets">▦ <span>My presets</span></a
+          ><a class="nav-link" href="#accessibility"
+            >♧ <span>Accessibility</span></a
+          ><a class="nav-link" href="#data">⇅ <span>Import & export</span></a
+          ><a class="nav-link" href="#help">? <span>Help & privacy</span></a>
+        </nav>
+        <div class="sidebar-note">
+          <span class="tag">LOCAL BY DESIGN</span>
+          <p style="margin-top: 10px">
+            Your web. Your atmosphere.<br />No accounts. No tracking.<br />Just
+            a little more you.
+          </p>
+        </div>
+      </aside>
+      <main class="main">
+        <div class="eyebrow">YOUR WORLD, REIMAGINED</div>
+        <header class="page-heading">
+          <div>
+            <h1 id="page-title">A different kind of browsing.</h1>
+            <p id="page-description">
+              Less noise. More atmosphere. Make the everyday feel extraordinary.
+            </p>
+          </div>
+          <span id="state" class="status">Loading</span>
+        </header>
+        <div id="notice" role="status" aria-live="polite"></div>
+        <section id="appearance" class="settings-view">
+          <div class="panel" id="global"></div>
+          <div class="appearance-layout">
+            <div class="panel" id="appearance-controls"></div>
+            <div class="preview-column">
+              <div id="preview"></div>
+              <p class="preview-caption">
+                A private little preview. Never your tab content.
+              </p>
+              <div class="panel" style="margin-top: 22px">
+                <span class="eyebrow">A GOOD PLACE TO START</span>
+                <h3 style="margin: 10px 0">Subtle looks good on everything.</h3>
+                <p class="section-description">
+                  Balanced mode brings glass to navigation and selected cards
+                  while leaving the content you came for alone.
+                </p>
+                <button class="button" id="reset-appearance">
+                  ↺ Restore appearance defaults
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="sites" class="settings-view" hidden>
+          <div class="panel">
+            <h3>A place for every preference.</h3>
+            <p class="section-description">
+              Exact rules beat parent-domain rules. A site set to off always
+              stays off.
+            </p>
+            <label class="field"
+              >Find a website<input
+                id="site-search"
+                type="search"
+                placeholder="Search your rules…"
+            /></label>
+            <div id="site-list"></div>
+            <button id="new-rule" class="button primary">
+              + Add website rule
+            </button>
+            <div id="rule-editor"></div>
+          </div>
+          <div class="panel">
+            <h3>Excluded websites</h3>
+            <p class="section-description">
+              One hostname per line. Exclusions cover that hostname and its
+              subdomains, and always win.
+            </p>
+            <label class="field"
+              >Excluded hostnames<textarea
+                id="exclusions"
+                placeholder="example.com"
+              ></textarea></label
+            ><button id="save-exclusions" class="button">Save exclusions</button
+            ><button id="clear-sites" class="button danger">
+              Reset all website rules
+            </button>
+          </div>
+        </section>
+        <section id="presets" class="settings-view" hidden>
+          <div class="panel">
+            <h3>Good moods, saved.</h3>
+            <p class="section-description">
+              Save your current global appearance and come back to it whenever
+              you like.
+            </p>
+            <div class="inline">
+              <input
+                type="text"
+                id="preset-name"
+                aria-label="Preset name"
+                placeholder="A name for this feeling…"
+                maxlength="60"
+              /><button id="save-preset" class="button primary">
+                + Save current look
+              </button>
+            </div>
+            <div id="preset-list"></div>
+            <button id="restore-presets" class="button">
+              Restore built-in appearance / clear custom presets
+            </button>
+          </div>
+        </section>
+        <section id="accessibility" class="settings-view" hidden>
+          <div class="panel">
+            <h3>Comfort comes first.</h3>
+            <p class="section-description">
+              Keep your browsing clear, calm, and comfortable.
+            </p>
+            <div id="accessibility-controls"></div>
+          </div>
+        </section>
+        <section id="data" class="settings-view" hidden>
+          <div class="panel">
+            <h3>Take your world with you.</h3>
+            <p class="section-description">
+              Export a JSON backup, or import settings from another
+              installation. Imports are validated before anything changes.
+              Maximum 256 KB.
+            </p>
+            <button id="export" class="button primary">↓ Export settings</button
+            ><label class="field"
+              >Choose a settings file<input
+                id="import-file"
+                type="file"
+                accept="application/json,.json" /></label
+            ><label class="field"
+              >Or paste settings JSON<textarea
+                id="import-json"
+                placeholder="Paste exported settings here…"
+                maxlength="262145"
+              ></textarea></label
+            ><button id="import" class="button">Validate & import</button>
+          </div>
+          <div class="panel">
+            <h3>A fresh start.</h3>
+            <p class="section-description">
+              Reset global appearance, site rules, saved presets, and
+              accessibility preferences.
+            </p>
+            <button id="reset-all" class="button danger">
+              Reset all settings…
+            </button>
+          </div>
+        </section>
+        <section id="help" class="settings-view" hidden>
+          <div class="panel faq">
+            <h3>A little guidance.</h3>
+            <details>
+              <summary>Why does a website look different?</summary>
+              <p>
+                Vistara styles selected containers, not every pixel. Sites
+                change markup, and adapters may need updates. Use Compatibility
+                mode or turn off the website if something looks wrong.
+              </p>
+            </details>
+            <details>
+              <summary>How do I allow website access?</summary>
+              <p>
+                Open Chrome’s Extensions menu, select Vistara, then “This can
+                read and change site data” and allow the desired sites. Reload
+                already-open tabs after installing or changing access. Manage
+                extensions at chrome://extensions.
+              </p>
+            </details>
+            <details>
+              <summary>What cannot be themed?</summary>
+              <p>
+                Chrome’s toolbar, tabs, internal pages, Web Store, PDF viewer,
+                closed shadow roots, and inaccessible frames. Sensitive login,
+                checkout, medical, identity and government pages are
+                automatically paused where detected. This detection is
+                conservative, not exhaustive.
+              </p>
+            </details>
+            <details>
+              <summary>How can I improve performance?</summary>
+              <p>
+                Choose Compatibility mode to remove blur and ambient
+                backgrounds. Lower blur and use Balanced mode for busy pages.
+                Styling is limited to 160 non-nested surfaces, and mutations are
+                batched.
+              </p>
+            </details>
+            <details>
+              <summary>How do I reset just one website?</summary>
+              <p>
+                Open Website rules, find the hostname, and choose Remove. This
+                restores global defaults. Reset all website rules is a separate
+                action.
+              </p>
+            </details>
+            <details>
+              <summary>Where do settings live?</summary>
+              <p>
+                Small preferences use Chrome Sync when available. Larger rule
+                and preset collections stay in local extension storage. Sync
+                failures are reported, with a local fallback preserved.
+              </p>
+            </details>
+          </div>
+          <div class="panel legal">
+            <span class="tag">VISTARA · VERSION 1.0.0</span>
+            <h3>Privacy, without the fine print.</h3>
+            <p>
+              Vistara is a local appearance tool. It does not collect, transmit,
+              log, summarize, or sell page content, messages, credentials,
+              history, or account data. No analytics, remote fonts, remote code,
+              or backend. We inspect selectors to identify surfaces; we never
+              read form values or message text.
+            </p>
+            <h3>Why the site-access warning?</h3>
+            <p>
+              Content scripts need access to eligible HTTP/HTTPS pages to style
+              them. Storage saves your preferences. ActiveTab identifies the
+              website you open the popup on and sends temporary before/after
+              commands. No history, cookies, clipboard, network interception, or
+              tabs permission is requested.
+            </p>
+            <h3>Made to be yours.</h3>
+            <p>
+              Artwork and icons are locally generated for Vistara. The supplied
+              concepts inspired the glass composition. Live site compatibility
+              is best effort; browser fixtures are not a substitute for
+              real-site release QA.
+            </p>
+            <p>
+              <a
+                href="https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world"
+                target="_blank"
+                rel="noreferrer"
+                >Official Chrome installation guide ↗</a
+              >
+            </p>
+          </div>
+        </section>
+        <footer class="options-footer">
+          Vistara — Theme World · Made for a calmer web.
+        </footer>
+      </main>
+    </div>
+    <dialog id="confirm-dialog">
+      <h3 id="confirm-title">Confirm change</h3>
+      <p id="confirm-description"></p>
+      <div class="inline">
+        <button id="cancel-confirm" class="button">Cancel</button
+        ><button id="accept-confirm" class="button primary">Continue</button>
+      </div>
+    </dialog>
+    <script src="options.js"></script>
+  </body>
+</html>
