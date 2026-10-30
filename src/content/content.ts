@@ -3,13 +3,28 @@ import { Engine } from "./engine";
 function startContent() {
   const engine = new Engine();
   let ready: Promise<void>;
+  let generation = 0;
   const refreshNow = () =>
-    (ready = load()
-      .then((s) => engine.apply(s))
-      .catch((error) => {
-        engine.unmount();
-        engine.status = "Settings or styling error: " + String(error);
-      }));
+    (ready = (async () => {
+      const request = ++generation;
+      const settings = await load();
+      let wallpaper: string | null = null;
+      if (
+        settings.studio.wallpaper &&
+        typeof chrome.runtime.sendMessage === "function"
+      )
+        try {
+          const result = await chrome.runtime.sendMessage({
+            type: "VISTARA_WALLPAPER",
+            id: settings.studio.wallpaper,
+          });
+          wallpaper = result?.data ?? null;
+        } catch {}
+      if (request === generation) engine.apply(settings, wallpaper);
+    })().catch((error) => {
+      engine.unmount();
+      engine.status = "Settings or styling error: " + String(error);
+    }));
   let timer: ReturnType<typeof setTimeout>;
   const refresh = () => {
     clearTimeout(timer);
@@ -20,7 +35,11 @@ function startContent() {
   chrome.runtime.onMessage.addListener((message, _sender, reply) => {
     if (message.type === "VISTARA_STATUS") {
       void ready.then(() =>
-        reply({ status: engine.status, scanMs: engine.scanMs }),
+        reply({
+          status: engine.status,
+          scanMs: engine.scanMs,
+          coverage: engine.coverage,
+        }),
       );
       return true;
     }

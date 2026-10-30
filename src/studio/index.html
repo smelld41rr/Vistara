@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vistara — Your coding world</title>
+    <link rel="stylesheet" href="../ui.css" />
+    <link rel="stylesheet" href="studio.css" />
+  </head>
+  <body class="studio">
+    <div class="studio-shell">
+      <aside class="studio-sidebar">
+        <a class="studio-brand" href="#gallery"
+          ><img src="../icons/icon48.png" alt="" /><span
+            >vistara<em>THEME WORLD</em></span
+          ></a
+        >
+        <div class="sidebar-kicker">MAKE SPACE FOR YOU</div>
+        <nav aria-label="Studio">
+          <a href="#gallery" class="studio-nav active"
+            >◈ <span>Scene library</span><small>01</small></a
+          ><a href="#customize" class="studio-nav"
+            >◐ <span>Make it yours</span><small>02</small></a
+          ><a href="#wallpapers" class="studio-nav"
+            >▧ <span>My wallpapers</span><small>03</small></a
+          ><a href="#flow" class="studio-nav"
+            >⌁ <span>Focus & moments</span><small>04</small></a
+          ><a href="#share" class="studio-nav"
+            >↗ <span>Share a little win</span><small>05</small></a
+          >
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="tiny-orbit">✦</div>
+          <p>Your code.<br />Your corner of the universe.</p>
+          <span>LOCAL FIRST. ALWAYS YOURS.</span
+          ><a href="../options/index.html">Advanced settings & site rules ↗</a
+          ><a href="../options/index.html#help">Help, privacy & limitations ↗</a
+          ><small id="studio-version">VISTARA 2.0 · CHROME</small>
+        </div>
+      </aside>
+      <main class="studio-main">
+        <header class="studio-top">
+          <span>YOUR EVERYDAY, REIMAGINED</span>
+          <div class="studio-save">
+            <span class="online-dot"></span
+            ><span id="save-state">Loading your world…</span>
+            <div id="master-switch"></div>
+          </div>
+        </header>
+        <div class="studio-hero">
+          <div>
+            <div class="hero-kicker">
+              <span></span> A LITTLE CHANGE OF SCENERY
+            </div>
+            <h1>A workspace that<br />feels like <i>you.</i></h1>
+            <p>Turn the everyday solve into somewhere you want to be.</p>
+          </div>
+          <span class="hero-index">STUDIO<br /><strong>02 / 00</strong></span>
+        </div>
+        <div id="notice" role="status" aria-live="polite"></div>
+        <div class="studio-columns">
+          <div class="studio-content">
+            <section id="gallery" class="studio-view">
+              <div class="library-toolbar">
+                <div>
+                  <h2>Find your atmosphere</h2>
+                  <p>
+                    Twelve original scenes. A thousand ways to make them yours.
+                  </p>
+                </div>
+                <label class="search-wrap"
+                  ><span>⌕</span
+                  ><input
+                    id="scene-search"
+                    type="search"
+                    aria-label="Search scenes"
+                    placeholder="Find a feeling…"
+                /></label>
+              </div>
+              <div
+                id="categories"
+                class="categories"
+                role="group"
+                aria-label="Scene categories"
+              ></div>
+              <div id="scene-grid" class="scene-grid"></div>
+              <p class="library-note">
+                ✧ &nbsp; Original vector artwork, bundled locally. No hotlinks.
+                No waiting.
+              </p>
+            </section>
+            <section id="customize" class="studio-view" hidden>
+              <div class="studio-panel">
+                <div class="panel-eyebrow">THE DETAILS MAKE IT YOURS</div>
+                <h2>A little more you.</h2>
+                <p class="panel-description">
+                  Bring your favorite scene into focus. Changes save
+                  automatically.
+                </p>
+                <div class="studio-look-save">
+                  <label class="field"
+                    >Save this atmosphere<input
+                      id="look-name"
+                      type="text"
+                      maxlength="60"
+                      placeholder="A name for this feeling…" /></label
+                  ><button id="save-look" class="button">
+                    Save current look
+                  </button>
+                  <div id="saved-looks"></div>
+                  <p class="hint">
+                    Manage, rename and delete saved looks in Advanced settings →
+                    My presets.
+                  </p>
+                </div>
+                <div id="scene-controls"></div>
+                <div id="appearance-controls"></div>
+              </div>
+            </section>
+            <section id="wallpapers" class="studio-view" hidden>
+              <div class="studio-panel">
+                <div class="panel-eyebrow">A WINDOW INTO YOUR WORLD</div>
+                <h2>Bring your own view.</h2>
+                <p class="panel-description">
+                  Your images stay in this browser. We resize and optimize them
+                  locally.
+                </p>
+                <label class="upload-zone"
+                  ><span>＋</span><strong>Drop into a different world</strong
+                  ><small>Choose a PNG, JPG or WebP · up to 12 MB</small
+                  ><input
+                    id="wallpaper-upload"
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp"
+                /></label>
+                <div class="inline">
+                  <button id="use-scene" class="button">
+                    Use scene artwork instead
+                  </button>
+                </div>
+                <div id="wallpaper-grid" class="wallpaper-grid"></div>
+                <p class="hint">
+                  Up to 20 optimized images, stored in local IndexedDB. Images
+                  are not included in settings JSON or Chrome Sync. Use only
+                  images you have permission to use.
+                </p>
+              </div>
+            </section>
+            <section id="flow" class="studio-view" hidden>
+              <div class="studio-panel">
+                <div class="panel-eyebrow">LESS NOISE. MORE POSSIBILITY.</div>
+                <h2>Find a little flow.</h2>
+                <div id="flow-controls"></div>
+                <p class="hint">
+                  Focus hides only adapter-recognized recommendations and
+                  sidebars. Run, Submit, the editor and problem navigation
+                  remain available. Shortcut: Alt + Shift + V (customize in
+                  chrome://extensions/shortcuts).
+                </p>
+              </div>
+              <div class="studio-panel">
+                <h2>A scene for every challenge.</h2>
+                <p class="panel-description">
+                  Easy, Medium and Hard labels choose your scene when the
+                  platform exposes them. Otherwise your default scene stays
+                  active. A custom wallpaper takes priority.
+                </p>
+                <div id="difficulty-controls"></div>
+              </div>
+            </section>
+            <section id="share" class="studio-view" hidden>
+              <div class="studio-panel">
+                <div class="panel-eyebrow">SMALL STEPS DESERVE A SPOTLIGHT</div>
+                <h2>You made something happen.</h2>
+                <p class="panel-description">
+                  Create a local achievement card. Add only the information you
+                  want to share—we never read your code or private profile.
+                </p>
+                <div class="share-fields">
+                  <label class="field"
+                    >Problem title<input
+                      id="share-title"
+                      type="text"
+                      maxlength="80"
+                      value="A little progress, every day."
+                  /></label>
+                  <div class="inline">
+                    <label class="field"
+                      >Platform<select id="share-platform"></select></label
+                    ><label class="field"
+                      >Difficulty<select id="share-difficulty">
+                        <option>Easy</option>
+                        <option selected>Medium</option>
+                        <option>Hard</option>
+                      </select></label
+                    >
+                  </div>
+                  <div class="inline">
+                    <label class="field"
+                      >Language<input
+                        id="share-language"
+                        type="text"
+                        maxlength="24"
+                        value="JavaScript" /></label
+                    ><label class="field"
+                      >Runtime (optional)<input
+                        id="share-runtime"
+                        type="text"
+                        maxlength="24"
+                        placeholder="e.g. 42 ms"
+                    /></label>
+                  </div>
+                  <label class="field"
+                    >Your name (optional)<input
+                      id="share-name"
+                      type="text"
+                      maxlength="32"
+                      placeholder="How would you like to sign it?"
+                  /></label>
+                </div>
+                <canvas
+                  id="share-card"
+                  width="1200"
+                  height="675"
+                  aria-label="Achievement card preview"
+                  role="img"
+                ></canvas
+                ><button id="download-share" class="studio-primary">
+                  Download card as PNG ↗
+                </button>
+                <p class="hint">
+                  Card details are manually entered and not verified submission
+                  results. Nothing is posted automatically.
+                </p>
+              </div>
+            </section>
+          </div>
+          <aside class="live-column">
+            <div class="preview-heading">
+              <span><span class="online-dot"></span> YOUR CODING CORNER</span
+              ><span>LIVE PREVIEW</span>
+            </div>
+            <div id="coding-preview" class="coding-preview">
+              <div class="demo-top">
+                <span>◈ &nbsp; <b id="demo-platform">LeetCode</b></span
+                ><span>⌕ &nbsp; ◷ &nbsp; ⋯</span>
+              </div>
+              <div class="demo-tabs">
+                <span>◉ Description</span><span>〈/〉 Code</span
+                ><span>✓ Testcases</span>
+              </div>
+              <div class="demo-workspace">
+                <div class="demo-problem">
+                  <small>YOUR NEXT LITTLE BREAKTHROUGH</small>
+                  <h3>1. Two Sum</h3>
+                  <span class="difficulty-badge">Easy</span>
+                  <p>
+                    Given an array of integers, return the indices of two
+                    numbers that add up to the target.
+                  </p>
+                  <pre>Input: [2, 7, 11, 15]<br>Target: 9</pre>
+                  <p class="demo-muted">
+                    Some problems just need<br />a fresh perspective.
+                  </p>
+                </div>
+                <div class="demo-editor">
+                  <div class="editor-caption">JavaScript <span>⌄</span></div>
+                  <pre><span class="line-number">1 </span><span class="code-purple">function</span> <span class="code-green">twoSum</span>(nums) {<br><span class="line-number">2 </span>  <span class="code-purple">const</span> seen = <span class="code-blue">new Map</span>();<br><span class="line-number">3 </span><br><span class="line-number">4 </span>  <span class="code-purple">for</span> (<span class="code-purple">const</span> n <span class="code-purple">of</span> nums) {<br><span class="line-number">5 </span>    <span class="code-muted">// one step at a time</span><br><span class="line-number">6 </span>  }<br><span class="line-number">7 </span>}</pre>
+                  <div class="demo-testcase">
+                    <small>TESTCASE</small>
+                    <p id="demo-result">
+                      Case 1 &nbsp; · &nbsp; Ready when you are
+                    </p>
+                    <button id="demo-run" type="button">▷ Run preview</button>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-bottom">
+                <span>YOUR IDEAS LOOK GOOD HERE.</span><span>✦</span>
+              </div>
+            </div>
+            <div class="preview-platform">
+              <label for="platform-preview">Preview a platform</label
+              ><select id="platform-preview"></select>
+            </div>
+            <div id="selected-scene" class="selected-scene"></div>
+            <div class="preview-quick">
+              <div id="preview-focus"></div>
+              <a href="#customize">Fine-tune this feeling ↗</a>
+            </div>
+            <p class="preview-disclaimer">
+              A local demo, not your live tab. Adapter coverage and page access
+              are shown in the extension popup. Live-site QA is still required.
+            </p>
+            <div class="quiet-card">
+              <span>MADE FOR YOUR NEXT BREAKTHROUGH</span>
+              <p>Beautiful surroundings.<br /><i>Clearer thinking.</i></p>
+              <small
+                >All nine coding adapters included.<br />Chrome first. No
+                account required.</small
+              >
+            </div>
+          </aside>
+        </div>
+        <footer class="studio-footer">
+          <span>VISTARA — THEME WORLD</span
+          ><span>Made for the way you think. &nbsp; ✦</span
+          ><span>Runs locally · No tracking</span>
+        </footer>
+      </main>
+    </div>
+    <script src="studio.js"></script>
+  </body>
+</html>

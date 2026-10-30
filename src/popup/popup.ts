@@ -1,3 +1,5 @@
+import { scenes, sceneUrl } from "../shared/scenes";
+import { button, el } from "../shared/ui";
 import { connectTab } from "../shared/connection";
 import { init, save } from "../shared/storage";
 import { defaults, eligible, resolve, type Settings } from "../shared/settings";
@@ -99,6 +101,41 @@ function render() {
     (document.querySelector("#before") as HTMLButtonElement).disabled = true;
   }
   preview(settings.appearance);
+  const picker = document.querySelector("#scene-picker")!;
+  picker.replaceChildren();
+  for (const scene of scenes.slice(0, 4)) {
+    const b = button(
+      "",
+      () => {
+        settings.studio.scene = scene.id;
+        settings.studio.wallpaper = null;
+        render();
+        update();
+      },
+      "popup-scene",
+    );
+    b.setAttribute("aria-label", "Apply scene " + scene.name);
+    b.setAttribute(
+      "aria-pressed",
+      String(settings.studio.scene === scene.id && !settings.studio.wallpaper),
+    );
+    b.append(
+      el("img", { src: sceneUrl(scene.id), alt: "" }),
+      el("span", {}, scene.name),
+    );
+    picker.append(b);
+  }
+  document.querySelector("#focus-toggle")!.replaceChildren(
+    toggle(
+      "Coding focus mode",
+      settings.studio.focus,
+      (v) => {
+        settings.studio.focus = v;
+        update();
+      },
+      "Alt + Shift + V · coding sites only",
+    ),
+  );
 }
 async function start() {
   settings = await init();

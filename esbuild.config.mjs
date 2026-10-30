@@ -15,6 +15,9 @@ for (const size of Object.keys(rootManifest.action.default_icon))
     rootManifest.action.default_icon[size],
   );
 rootManifest.options_page = prefix(rootManifest.options_page);
+rootManifest.background.service_worker = prefix(
+  rootManifest.background.service_worker,
+);
 for (const size of Object.keys(rootManifest.icons))
   rootManifest.icons[size] = prefix(rootManifest.icons[size]);
 for (const script of rootManifest.content_scripts)
@@ -22,16 +25,19 @@ for (const script of rootManifest.content_scripts)
 await import("node:fs/promises").then(({ writeFile }) =>
   writeFile("manifest.json", JSON.stringify(rootManifest, null, 2) + "\n"),
 );
-for (const name of ["popup", "options"]) {
+for (const name of ["popup", "options", "studio"]) {
   await mkdir(`dist/${name}`, { recursive: true });
   await copyFile(`src/${name}/index.html`, `dist/${name}/index.html`);
 }
 await copyFile("src/shared/ui.css", "dist/ui.css");
+await copyFile("src/studio/studio.css", "dist/studio/studio.css");
 const opts = {
   entryPoints: {
     content: "src/content/content.ts",
     "popup/popup": "src/popup/popup.ts",
     "options/options": "src/options/options.ts",
+    "studio/studio": "src/studio/studio.ts",
+    background: "src/background/worker.ts",
   },
   bundle: true,
   outdir: "dist",
@@ -51,6 +57,9 @@ if (process.argv.includes("--watch")) {
     ...m.content_scripts.flatMap((x) => x.js),
     m.action.default_popup,
     m.options_page,
+    m.background.service_worker,
+    "studio/studio.js",
+    "studio/studio.css",
     ...Object.values(m.icons),
     "popup/popup.js",
     "options/options.js",

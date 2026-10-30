@@ -270,6 +270,7 @@ function renderPresets() {
     actions.append(
       button("Apply", () => {
         settings.appearance = { ...preset.appearance };
+        if (preset.studio) settings.studio = structuredClone(preset.studio);
         changed();
         renderAppearance();
         notice("Preset applied.");
@@ -412,6 +413,7 @@ $("save-preset").onclick = () => {
     id: crypto.randomUUID(),
     name: input.value.trim(),
     appearance: { ...settings.appearance },
+    studio: structuredClone(settings.studio),
   });
   input.value = "";
   changed();

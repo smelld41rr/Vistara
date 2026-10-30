@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "date": "2026-10-30T17:07:24.334Z",
+  "type": "Compiled application and background bundles in Chromium, simulated Chrome APIs, representative local fixtures. Not live-site or native extension validation.",
+  "passed": [
+    "Studio renders twelve original scenes with no startup errors",
+    "scene search, categories, favorites and local selection persist",
+    "leetcode: background, statement, testcase, navbar and editor coverage",
+    "hackerrank: background, statement, testcase, navbar and editor coverage",
+    "geeksforgeeks: background, statement, testcase, navbar and editor coverage",
+    "codeforces: background, statement, testcase, navbar and editor coverage",
+    "codechef: background, statement, testcase, navbar and editor coverage",
+    "atcoder: background, statement, testcase, navbar and editor coverage",
+    "code360: background, statement, testcase, navbar and editor coverage",
+    "interviewbit: background, statement, testcase, navbar and editor coverage",
+    "coderbyte: background, statement, testcase, navbar and editor coverage",
+    "focus mode hides recommendations, not Run/Submit; keyboard command toggles it",
+    "difficulty scenes react to dynamic difficulty labels",
+    "local PNG upload is optimized, stored in IndexedDB and served by compiled background",
+    "scene brightness, light glass and font controls update actual page",
+    "saved atmospheres restore scene, glass and appearance",
+    "accepted moment appears once after an observed verdict transition",
+    "global OFF restores body background, code, focus and all engine-owned markers",
+    "share card reflects entered details and downloads an actual PNG",
+    "Studio narrow layout, keyboard focus and reduced-motion controls stay reachable",
+    "no uncaught bundle exceptions across coding and Studio tests"
+  ],
+  "errors": []
+}

@@ -1,3 +1,4 @@
+import { studioDefaults, validateStudio, type StudioSettings } from "./studio";
 export const themes = {
   midnight: {
     name: "Midnight",
@@ -69,9 +70,11 @@ export interface Preset {
   id: string;
   name: string;
   appearance: Appearance;
+  studio?: StudioSettings;
 }
 export interface Settings {
   schemaVersion: 1;
+  studio: StudioSettings;
   enabled: boolean;
   appearance: Appearance;
   excludedSites: string[];
@@ -85,6 +88,7 @@ export interface Settings {
   };
 }
 export const defaults: Settings = {
+  studio: structuredClone(studioDefaults),
   schemaVersion: 1,
   enabled: true,
   appearance: {
@@ -234,10 +238,19 @@ export function validate(raw: unknown): Settings {
       !p.name.trim() ||
       p.name.length > 60 ||
       p.id.length > 100 ||
-      Object.keys(p).some((k) => !["id", "name", "appearance"].includes(k))
+      Object.keys(p).some(
+        (k) => !["id", "name", "appearance", "studio"].includes(k),
+      )
     )
       throw Error("Invalid preset.");
-    return { id: p.id, name: p.name, appearance: appearance(p.appearance) };
+    return {
+      id: p.id,
+      name: p.name,
+      appearance: appearance(p.appearance),
+      ...(Object.hasOwn(p, "studio")
+        ? { studio: validateStudio(p.studio) }
+        : {}),
+    };
   });
   if (
     new Set(customPresets.map((p: Preset) => p.id)).size !==
@@ -260,6 +273,7 @@ export function validate(raw: unknown): Settings {
     siteOverrides,
     customPresets,
     accessibility,
+    studio: validateStudio(o.studio),
   };
 }
 export function importSettings(text: string): Settings {

@@ -1,85 +1,90 @@
-# Vistara — Theme World
+# Vistara — Theme World · Studio 2.0
 
-A calmer web, through glass. An offline-first Manifest V3 Chrome extension inspired by the supplied GlassFlow specification and visual guide, branded for Vistara.
+Your code. Your corner of the universe.
 
-## Get started in 60 seconds
+A local-first Chrome Manifest V3 appearance extension with a new Theme Studio, twelve original illustrated scenes, uploaded wallpapers, glass workspaces and nine dedicated coding adapters. The previous YouTube/ChatGPT/Google/GitHub/Reddit/Wikipedia adapters remain available.
 
-1. Download the project using GitHub **Code → Download ZIP**, then **Extract All** in Windows.
-2. Open `chrome://extensions` in Google Chrome and enable **Developer mode**.
-3. Choose **Load unpacked**, then select the extracted **Vistara-main** folder containing `manifest.json`. This works directly: no build or Node.js installation is required.
-4. Alternatively, select its **dist** folder. Both folder layouts are supported and generated from the same manifest template.
-5. Reload your website tabs, pin Vistara using Chrome's Extensions menu, and open its popup.
+**Validation boundary:** coding support is implemented and tested on representative local browser fixtures. This environment's network proxy returns 403 for all nine live sites, and its managed Chromium blocks unpacked extensions. Native Chrome installation and live logged-in route compatibility are **not verified**. Do not treat included fixture captures as live website screenshots or store approval.
 
-If Windows creates `Downloads/Vistara-main/Vistara-main`, choose the **inner folder containing manifest.json**. Do not select the ZIP or an outer folder containing only another Vistara-main folder. The extension-only ZIP in `release/` is also loadable after extraction; select its folder containing `manifest.json`.
+## Install without building
 
-For development, use Node.js 22 or 24 LTS, run `npm install`, then `npm run build`. The build refreshes both root and dist manifests. Enterprise-managed browsers may forbid unpacked extensions; that requires the browser administrator's policy change.
+1. Extract `release/Vistara-Theme-World-v2.0.0.zip` into a new folder.
+2. Open `chrome://extensions` in Chrome. Turn **Developer mode** on.
+3. Choose **Load unpacked** and select the extracted folder containing `manifest.json`.
+4. Alternatively, select this source project's root folder or its `dist/` folder. Both manifests are generated and validated.
+5. Allow the desired site's access and reload website tabs. Click Vistara → **Open Theme Studio**.
 
-## What you get
+If Windows creates nested folders, select the inner folder containing `manifest.json`. Do not select the ZIP. Keep the extracted folder on disk. Upgrading the same folder and pressing Reload retains extension storage; removing the extension normally removes its settings and local wallpaper database. Export settings before a deliberate uninstall; image files need their own backup.
 
-Five local palettes: Midnight, Aurora, Arctic, Orchid, Pixel Realm. Balanced mode styles selected navigation/card surfaces; Immersive also admits adapter-supported dialog shells; Compatibility omits card/dialog treatment and backdrop blur. Media pixels, code content, form values, event handlers and page structure are preserved.
+The v2 source and prebuilt ZIPs are prepared for GitHub delivery at the user's request. GitHub source delivery does not imply deployment, Chrome Web Store submission, publication or live-site certification.
 
-The popup has a global switch, locally generated preview, theme picker, blur/opacity/radius/ambient sliders, modes, active-host toggle, temporary before/after and appearance reset. Before/after is tab-local and lasts until the page reloads; it never changes saved settings. Active site overrides can intentionally differ from global controls—edit or remove them in Website rules if global changes appear ineffective.
+## The experience
 
-Options include seven adjustable effects, ambient/contrast settings, exact-host and parent-domain rules, searchable site lists, exclusions, named presets, export/import, accessibility controls and troubleshooting. Exclusions always win. Within overrides, exact host beats the longest parent-domain match, then global defaults apply. Global OFF and unsupported URLs always win. Site OFF is respected; a narrower explicit exact-host rule may intentionally override a broader parent-domain rule. Hostname boundaries prevent `notexample.com` matching `example.com`.
+- **Scene library:** 12 original vector landscapes across Anime, Nature, Space, Cyberpunk, Minimal, Royal, Gaming and Study, with search and favorites. These are original stylized vector scenes, not licensed anime characters or third-party wallpapers.
+- **Live Studio:** responsive gallery, local problem/editor/testcase preview and a nine-platform preview selector. This is a safe demo, not tab contents. Preview Run is simulated and labeled accordingly.
+- **Make it yours:** five palettes, Auto/Dark/Light glass, blur/opacity/radius/borders/shadows/saturation, accent, scene visibility/brightness and image fit/position. Named atmospheres save Studio and appearance choices. Rename/duplicate/delete them in Advanced settings → My presets.
+- **Uploaded wallpapers:** PNG/JPEG/WebP up to 12 MB; locally decoded and resized to at most 1920×1200, optimized to JPEG under 1.5 MB, stored in extension-origin IndexedDB. Maximum 20. SVG/animated formats are not accepted. Cover/contain and top/center/bottom placement are supported; a freeform crop editor is not included.
+- **Focus:** hide adapter-recognized recommendations/sidebars while keeping problem/editor/Run/Submit controls. Toggle in Studio/popup or use **Alt+Shift+V**; customize at `chrome://extensions/shortcuts`.
+- **Difficulty scenes:** explicit Easy/Medium/Hard labels select assigned scenes where recognized. No ratings/difficulty are invented. A custom uploaded wallpaper takes precedence over difficulty scenes.
+- **Moments:** opt-in, dismissible Accepted/AC celebration when a recognized result changes. Sound is a short local Web Audio chime, off by default, and requires a page interaction/browser audio permission. Reduced-motion behavior is respected. Only available public difficulty/verdict labels are inspected; editor contents are not read.
+- **Share a little win:** enter problem/platform/difficulty/language/runtime/name yourself and export a 1200×675 PNG. Metadata is not scraped or verified. Nothing is posted or sent automatically.
+- **Advanced settings:** exact/parent site rules, exclusions, per-site appearance, accessibility, local/sync preference handling, validated JSON import/export and explicit reset actions. JSON includes local wallpaper IDs, not image bytes; missing local images fall back to scene art.
 
-Vistara automatically pauses detected sensitive flows (password/card inputs; common authentication, payment, medical and government URLs). This is conservative detection, not a guarantee that every sensitive website is identified. Disable a troublesome site in the popup or add it to exclusions. Website authors can opt out with `<meta name="vistara" content="off">` or a `data-vistara-optout` attribute on `<html>`.
+## Nine coding adapters
 
-## Project layout
+LeetCode (including leetcode.cn), HackerRank, GeeksforGeeks, Codeforces, CodeChef, AtCoder, Code360, InterviewBit and Coderbyte have separate route/selector definitions in `src/adapters/coding.ts`. Code360 is path-scoped under `/code360`, `/codestudio` or `/studio`; unrelated naukri.com pages stay generic. Adapter markup can change and requires maintenance.
 
-```text
-src/
-  shared/       schema, migrations, hostname matching, storage, shared UI
-  adapters/     six versioned site adapters + generic fallback
-  content/      scoped CSS, reversible engine, storage/navigation messaging
-  popup/        compact control centre
-  options/      responsive advanced settings
-public/icons/   original generated PNG assets (16/32/48/128)
-tests/          unit suite and Chromium bundle-integration harness
-screenshots/    actual browser captures of local fixtures and product UI
-docs/           specification review, test evidence, release checklist
-dist/           self-contained installable extension
-```
+Selected workspace shells become transparent; selected nav/problem/test panels receive readable glass surfaces; the **body paints the wallpaper**, rather than hiding it behind an opaque body with a negative-z-index overlay. No page node replacement, editor API interception, form-value changes or code-submission interception is used. Layout positioning/scroll dimensions are retained. Known editors get distinct surface treatment; syntax token colors and Monaco/Ace/CodeMirror font metrics stay native. The font-size control affects the Studio preview and recognized plain-text editors, not those native engines. Arbitrary syntax-palette editing is not implemented.
 
-## Developer workflow
+Popup status distinguishes detected panels/editors from a compatibility fallback with no recognized workspace panels. Unknown routes are not claimed as fully supported. Compatibility mode removes page backgrounds and blur. Global disable, exclusions and page opt-out win; disabling restores original variables/attributes and removes engine observers and visual effects. Only **visible** password/card fields trigger form-based safety pause, so dormant hidden login forms no longer disable every coding page. Actual auth/payment URL protection remains.
+
+## Development and checks
+
+Use Node.js 22/24 LTS:
 
 ```sh
-npm install
-npm run dev          # JS watch; reload extension after edits
-npm run build        # bundle, copy static assets, check manifest paths
-npm run lint         # strict TypeScript validation
-npm test             # settings, validation, matching, precedence, migrations
-npm run test:browser # compiled bundles in a real Chromium fixture harness
-npm run test:contrast # adaptive contrast and exact author-style restoration
+npm ci
+npm run build
+npm run lint
+npm test
+npm run test:contrast
+npm run test:browser
+npm run test:coding
+npm run package
 ```
 
-The lockfile is included; use `npm ci` for reproducible installation. If your environment disallows the default npm cache, use `npm ci --cache /tmp/vistara-npm`. Browser tests use `/usr/bin/chromium`; adjust `CHROMIUM_PATH` if necessary. The dev watcher rebuilds JavaScript; rerun `npm run build` after editing HTML, CSS, manifest or assets. Reload Vistara on `chrome://extensions`, then reload already-open websites to refresh content scripts after code updates.
+`npm run dev` watches JavaScript; rerun build for HTML/CSS/manifest changes, reload the extension and website tabs. Use `--cache /tmp/vistara-npm` with npm in restricted environments where its default cache is unavailable. Set `CHROMIUM_PATH` for browser tests if Chromium is not at `/usr/bin/chromium`.
 
-For browser tests, the installed Chromium's administrator policy blocks unpacked extensions. The harness uses the **built** JavaScript in real Chromium pages with simulated storage/tab APIs. It validates application logic and rendering, not actual installation, Chrome permission enforcement, or live-site compatibility. See [test evidence](docs/TEST_RESULTS.md) and [release checklist](docs/RELEASE_CHECKLIST.md).
+- `npm test`: schema/migration, security, host/route matching, site precedence, storage fallback, connection recovery, Studio scenes/presets and root/dist package checks.
+- `test:browser`: previous general-site/popup/options regression fixtures.
+- `test:coding`: real Chromium renders of compiled Studio, content and background bundles with simulated Chrome APIs. Checks all nine structural fixtures, image storage/delivery, focus command, difficulty updates, saved looks, moments, PNG export and responsive UI.
+- `test:contrast`: exact author-style restoration and conservative fallback contrast.
+- `package`: refreshes build, produces versioned and convenient unversioned source/extension ZIPs, verifies every archive entry and writes SHA256 checksums. It never pushes or publishes. Run checks before packaging.
 
-## Permissions and privacy
+See [current test evidence](docs/V2_BUILD_REPORT.md), [original audit](docs/CODING_AUDIT_BASELINE.md) and [release checklist](docs/RELEASE_CHECKLIST.md).
 
-`storage` saves preferences; `activeTab` identifies the selected host when the popup is invoked and supports tab-local commands. HTTP/HTTPS content-script matches provide styling access to eligible pages. Chrome displays broad site-access wording because styling requires DOM access. `scripting` attaches the packaged content script to an already-open active tab when the popup cannot reach it. It uses the popup's temporary `activeTab` grant; it does not bypass denied or protected pages. No `tabs`, history, cookie, clipboard or request-interception permissions are requested. No page text or form values are collected. Everything runs locally, and settings may use your browser's own Chrome Sync. See [PRIVACY.md](PRIVACY.md).
+## Structure
 
-Chrome's tab strip, toolbar, address bar, native dialogs, `chrome://` pages, Web Store, browser PDF viewer, closed shadow roots and inaccessible frames cannot be styled. Only top-level HTTP/HTTPS documents are targeted. Native website styles, site updates, CSP behavior and third-party widgets can limit coverage. A universal visual tool cannot promise identical pixels on arbitrary websites.
+```text
+src/studio/        new scene gallery, local images, preview, focus and share UI
+src/adapters/      nine coding + six general adapters and generic fallback
+src/content/       reversible rendering, coverage status, scoped coding CSS, moments
+src/background/    local image delivery and focus keyboard command
+src/shared/        schema, storage, IndexedDB, scenes, DOM controls, connection recovery
+src/popup/         quick controls, scene shortcuts, current-site status
+src/options/       advanced preferences, rules, presets, import/export
+scripts/           reproducible local ZIP packaging
+public/            original icons and asset provenance
+dist/              bundled installable extension; no Node/runtime dependencies
+tests/             unit, package and compiled-bundle browser tests
+screenshots/       real local-fixture/UI captures with provenance
+release/           source/extension ZIPs and checksums
+```
 
-## Design tokens and performance
+## Privacy and limits
 
-The engine sets `--gf-blur` (4–32px), `--gf-opacity` (.20–.90), `--gf-radius` (8–28px), `--gf-border-alpha`, `--gf-shadow-strength`, `--gf-accent`, `--gf-saturation`, `--gf-bg-intensity`, `--gf-base`, `--gf-text`, and `--gf-muted`. Defaults are 16px / .52 / 16px. Palettes are defined in `shared/settings.ts`. Adapter-specific CSS supplies YouTube and ChatGPT theme variables without touching media or syntax colors. Other adapters keep existing text colors and choose a compatible light or dark surface for conservative treatment; theme coverage is consequently less complete.
+No backend, accounts, analytics, remote fonts, remote code or runtime network requests. Preferences use Chrome Sync/local; uploaded images stay in extension IndexedDB. `storage` saves preferences; `activeTab` identifies the user-invoked tab; `scripting` recovers a missing packaged content script in that tab using the activeTab grant. Static HTTP/HTTPS matches enable appearance changes and explain Chrome's site-access warning. The packaged worker serves local assets and handles the declared command. No cookies/history/clipboard/webRequest/tabs permission is used. See [PRIVACY.md](PRIVACY.md).
 
-At most 160 non-nested surfaces are tracked per page. Added DOM subtrees are coalesced over 100ms with up to 32 pending roots. Attribute changes do not trigger the observer. Disable removes styles, tags, temporary root variables, timers and the engine's mutation observer. There are no page animation loops. Performance targets for release: no extension-caused layout shifts; batched scans generally under a 16ms frame on representative hardware; stable surface counts under infinite scroll. These are targets, not measured guarantees. Choose Compatibility for expensive sites. `VISTARA_STATUS` reports accumulated discovery time for diagnosis.
+Chrome UI, internal pages, Web Store, PDF viewer, inaccessible frames and closed shadow roots cannot be styled. Only top-level HTTP/HTTPS documents are targeted. Editor/viewer iframe and shadow-root integrations are not claimed. Audio/autoplay, CSP and permissions can restrict effects. Authenticated submissions, contests, streaming and real third-party editor behavior still require live/native QA. Sound/title-card packs, automatic verified submission share metadata, freeform image cropping, arbitrary native syntax palette editing, Firefox, accounts and premium payments are outside this local build.
 
-## Troubleshooting
-
-- **Not available on this page:** Chrome protects this URL, or it isn't HTTP/HTTPS.
-- **Cannot connect to this page:** the popup first attempts to attach its bundled content script using the active-tab grant. If Chrome denies access, open Manage extension → Site access → On all sites (or allow the specific site), reload the website, then choose Connect to this page / Retry. The detailed Chrome error is shown. Pages open before installation or an extension update may need a reload.
-- **Theme looks unchanged:** inspect exact/parent site overrides and exclusions. The generic fallback deliberately styles very few surfaces.
-- **Poor contrast or slow scrolling:** choose Compatibility, lower blur, use solid contrast surfaces, or turn off that website. Some author-defined colors remain intentionally untouched.
-- **Sync warning:** the local copy was saved; Chrome Sync is unavailable or quota-limited. Retry later. JSON export provides an independent backup.
-- **Unsupported stored version:** the original local settings are retained as `migrationBackup`. Export/recover deliberately; don't silently overwrite newer settings.
-- **A website changed:** adapters may need selector updates. Report hostname, route, theme, mode and the exact symptom without including private page contents.
-
-## Distribution
-
-The ZIP is an unpacked distribution, not a signed CRX. No store submission or publication was performed. Review the manual QA matrix, privacy disclosures, permission justification, trademark-neutral screenshots and Chrome Web Store requirements before submitting.
-
-Official Chrome references: [content scripts](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts), [permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions), [storage](https://developer.chrome.com/docs/extensions/reference/api/storage), [scripting API background reference](https://developer.chrome.com/docs/extensions/reference/api/scripting), [local installation](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world).
+Official documentation: [content scripts](https://developer.chrome.com/docs/extensions/reference/manifest/content-scripts), [permissions](https://developer.chrome.com/docs/extensions/develop/concepts/declare-permissions), [storage](https://developer.chrome.com/docs/extensions/reference/api/storage), [scripting](https://developer.chrome.com/docs/extensions/reference/api/scripting), [local installation](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world).

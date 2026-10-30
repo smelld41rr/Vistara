@@ -1,6 +1,6 @@
 {
   "name": "vistara-theme-world",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,12 +12,15 @@
     "lint": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "test:browser": "node tests/browser.mjs",
-    "test:contrast": "node --import tsx tests/contrast.mjs"
+    "test:contrast": "node --import tsx tests/contrast.mjs",
+    "test:coding": "node --import tsx tests/coding.mjs",
+    "package": "node scripts/package.mjs"
   },
   "devDependencies": {
     "@types/chrome": "^0.1.24",
     "@types/node": "^24.0.0",
     "esbuild": "^0.25.0",
+    "fflate": "^0.8.3",
     "playwright": "^1.56.0",
     "prettier": "^3.9.10",
     "tsx": "^4.20.0",

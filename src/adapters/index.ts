@@ -1,11 +1,18 @@
+import { codingAdapters } from "./coding";
 export interface Adapter {
   id: string;
   version: number;
   hosts: string[];
   rules: Record<string, string>;
   dynamic: boolean;
+  coding?: boolean;
+  path?: RegExp;
+  focus?: string;
+  difficulty?: string;
+  verdict?: string;
 }
 export const adapters: Adapter[] = [
+  ...codingAdapters,
   {
     id: "youtube",
     version: 1,
@@ -95,10 +102,12 @@ export const adapters: Adapter[] = [
     },
   },
 ];
-export function selectAdapter(host: string): Adapter {
+export function selectAdapter(host: string, pathname = "/"): Adapter {
   return (
-    adapters.find((a) =>
-      a.hosts.some((h) => host === h || host.endsWith("." + h)),
+    adapters.find(
+      (a) =>
+        a.hosts.some((h) => host === h || host.endsWith("." + h)) &&
+        (!a.path || a.path.test(pathname)),
     ) ?? adapters[adapters.length - 1]
   );
 }
@@ -112,8 +121,19 @@ export function sensitive(url: string): boolean {
       u.pathname,
     ) ||
     /\.(gov|mil)(\.|$)/i.test(u.hostname) ||
-    !!document.querySelector(
-      'input[type="password"], input[autocomplete="cc-number"], input[autocomplete="cc-csc"]',
-    )
+    Array.from(
+      document.querySelectorAll<HTMLElement>(
+        'input[type="password"], input[autocomplete="cc-number"], input[autocomplete="cc-csc"]',
+      ),
+    ).some((el) => {
+      const style = getComputedStyle(el);
+      return (
+        !el.closest('[hidden], [inert], [aria-hidden="true"]') &&
+        el.getClientRects().length > 0 &&
+        style.display !== "none" &&
+        style.visibility !== "hidden" &&
+        Number(style.opacity) !== 0
+      );
+    })
   );
 }

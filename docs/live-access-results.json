@@ -1,0 +1,47 @@
+[
+  {
+    "site": "leetcode",
+    "url": "https://leetcode.com/problems/two-sum/",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "hackerrank",
+    "url": "https://www.hackerrank.com/challenges/solve-me-first/problem",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "geeksforgeeks",
+    "url": "https://www.geeksforgeeks.org/problems/two-sum/1",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "codeforces",
+    "url": "https://codeforces.com/problemset/problem/1/A",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "codechef",
+    "url": "https://www.codechef.com/problems/TEST",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "atcoder",
+    "url": "https://atcoder.jp/contests/practice/tasks/practice_1",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "code360",
+    "url": "https://www.naukri.com/code360/problems/reading_6845742",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "interviewbit",
+    "url": "https://www.interviewbit.com/problems/add-one-to-number/",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "site": "coderbyte",
+    "url": "https://coderbyte.com/challenges",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  }
+]

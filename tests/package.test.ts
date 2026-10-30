@@ -8,10 +8,15 @@ async function verifyFolder(folder: string) {
     await readFile(resolve(root, "manifest.json"), "utf8"),
   );
   assert.equal(manifest.manifest_version, 3);
-  assert.equal(manifest.version, "1.0.2");
+  assert.equal(manifest.version, "2.0.0");
   const entries = [
     manifest.action.default_popup,
     manifest.options_page,
+    manifest.background.service_worker,
+    manifest.action.default_popup.replace(
+      "popup/index.html",
+      "options/index.html",
+    ),
     ...Object.values(manifest.icons),
     ...Object.values(manifest.action.default_icon),
     ...manifest.content_scripts.flatMap((s: { js: string[] }) => s.js),
@@ -29,7 +34,7 @@ async function verifyFolder(folder: string) {
       for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
         const resource = match[1];
         if (/^(https?:|#)/.test(resource)) continue;
-        const file = resolve(dirname(target), resource);
+        const file = resolve(dirname(target), resource.split(/[?#]/)[0]);
         assert.ok(file.startsWith(root + "/"));
         await access(file);
       }

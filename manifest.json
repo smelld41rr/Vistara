@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Vistara - Theme World",
-  "version": "1.0.2",
-  "description": "A calmer web, through glass. Local themes, thoughtful controls, and per-site appearance.",
+  "version": "2.0.0",
+  "description": "Your coding world, reimagined. Nine coding adapters, local wallpapers, glass panels, focus and your own Theme Studio.",
   "permissions": [
     "storage",
     "activeTab",
@@ -15,7 +15,7 @@
       "32": "dist/icons/icon32.png"
     }
   },
-  "options_page": "dist/options/index.html",
+  "options_page": "dist/studio/index.html",
   "icons": {
     "16": "dist/icons/icon16.png",
     "32": "dist/icons/icon32.png",
@@ -37,5 +37,16 @@
   ],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "commands": {
+    "toggle-focus": {
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      },
+      "description": "Toggle Vistara coding focus mode"
+    }
   }
 }

@@ -42,3 +42,18 @@ For each site, test Midnight/Aurora/Arctic and all three modes, global/per-site 
 - Inspect the ZIP for remote code, development-only data, credentials, missing assets and unnecessary permissions.
 - Choose developer contact/support and store listing text, complete disclosures and collect manual QA evidence.
 - Obtain explicit user instruction before submitting or publishing.
+
+## Studio 2.0 coding release gate
+
+The previous general-site matrix remains required. Also validate all nine coding adapters (LeetCode, HackerRank, GeeksforGeeks, Codeforces, CodeChef, AtCoder, Code360, InterviewBit, Coderbyte) on real, current pages before claiming live compatibility:
+
+- Confirm app-shell selectors, supported routes, foreground contrast, statement/test panels, navbar and actual Monaco/Ace/CodeMirror behavior.
+- Wallpaper must remain visible across the workspace, full viewport and long scroll; test cover/contain/placement/brightness, opaque host shells, sticky layers, popovers and menus. No scene may block clicks.
+- Type, select, copy, autocomplete, resize, change editor language and use Run/Submit; code values, caret geometry, syntax and diff semantics must remain correct. Native engine font metrics are intentionally preserved.
+- Check hidden login inputs do not disable normal pages, while visible login/payment flows pause safely. Close the flow and reapply/reload as needed.
+- Validate uploaded images in real extension-origin IndexedDB and the actual MV3 service worker, including worker suspension, missing/deleted images, quota failure, no Sync image contents and missing IDs after JSON import.
+- Test Alt+Shift+V on supported OS profiles, focus selectors, restore behavior and any user shortcut conflicts.
+- Verify difficulty labels and verdict selectors against actual UI. Do not infer difficulty from unverified numeric ratings or call a successful local test run an Accepted submission. Effects/sound are opt-in and must not replay old verdicts on install.
+- Test screen-reader/keyboard/200% zoom, light/dark/forced-colors, motion preferences and lower-power devices. Verify actual audio permission/audibility separately.
+- Review manual share-card data, actual PNG export, data privacy, accurate product copy and original artwork rights. No automatic social posting or scrape of private code/profile is implemented.
+- GitHub source/package delivery is user-authorized. Obtain separate explicit approval before deployment, store submission or publication.
