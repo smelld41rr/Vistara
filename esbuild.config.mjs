@@ -40,6 +40,7 @@ const opts = {
     background: "src/background/worker.ts",
   },
   bundle: true,
+  loader: { ".css": "text" },
   outdir: "dist",
   target: "chrome120",
   format: "iife",

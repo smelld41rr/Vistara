@@ -1,6 +1,6 @@
 {
-  "version": "2.0.0",
-  "date": "2026-10-30T17:07:24.334Z",
+  "version": "2.1.0",
+  "date": "2026-10-30T18:36:38.334Z",
   "type": "Compiled application and background bundles in Chromium, simulated Chrome APIs, representative local fixtures. Not live-site or native extension validation.",
   "passed": [
     "Studio renders twelve original scenes with no startup errors",

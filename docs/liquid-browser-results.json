@@ -1,0 +1,23 @@
+{
+  "version": "2.1.0",
+  "date": "2026-10-30T18:33:40.630Z",
+  "method": "Compiled extension bundles in Chromium with simulated Chrome APIs and local representative ChatGPT/coding fixtures. No live/authenticated or native MV3 verification.",
+  "passed": [
+    "default OFF leaves original ChatGPT appearance and author tokens intact",
+    "popup toggle enables real compiled content bundle without reloading",
+    "pastel backdrop covers viewport behind clickable content and preserves composer geometry",
+    "all popup effects persist and apply live to the page",
+    "multiline typing, send and streamed fixture updates preserve native handlers",
+    "existing menus, file selection, microphone state and Chat/Work switch remain functional",
+    "sidebar collapse/reopen, history scroll and SPA routes never duplicate layers",
+    "animation respects user and system reduced motion",
+    "OFF removes every liquid layer/marker/token and restores author styles",
+    "Studio exposes the same ChatGPT controls and persisted theme survives page refresh",
+    "responsive 1920 / 1440 / 1366 / tablet / mobile preserve viewport and controls",
+    "non-ChatGPT coding pages and ChatGPT subdomains never receive liquid styling",
+    "global master OFF and exact-host OFF still override Liquid Glass",
+    "visible authentication input pauses styling without reading its value",
+    "no external requests or uncaught bundle errors"
+  ],
+  "errors": []
+}

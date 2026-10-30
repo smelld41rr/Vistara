@@ -1,3 +1,5 @@
+import { LiquidGlass } from "./liquid/liquid";
+import { isLiquidHost } from "../shared/liquid";
 import { resolve, themes, type Settings } from "../shared/settings";
 import { effectiveScene } from "../shared/studio";
 import { sceneUrl } from "../shared/scenes";
@@ -25,9 +27,22 @@ export class Engine {
   private abort: AbortController | null = null;
   private wallpaper: string | null = null;
   private moments: Moments | null = null;
-  public status = "Inactive";
+  private liquid: LiquidGlass | null = null;
+  private currentStatus = "Inactive";
+  get status() {
+    return this.liquid?.status ?? this.currentStatus;
+  }
+  set status(value: string) {
+    this.currentStatus = value;
+  }
   public scanMs = 0;
-  public coverage = { panels: 0, editors: 0, navigation: 0 };
+  private currentCoverage = { panels: 0, editors: 0, navigation: 0 };
+  get coverage() {
+    return this.liquid?.coverage ?? this.currentCoverage;
+  }
+  set coverage(value: { panels: number; editors: number; navigation: number }) {
+    this.currentCoverage = value;
+  }
   private mark(el: Element, key: Mark, value: string) {
     if (el.hasAttribute(key) && !this.marked.get(el)?.has(key)) return false;
     el.setAttribute(key, value);
@@ -59,6 +74,19 @@ export class Engine {
     }
     if (sensitive(location.href)) {
       this.status = "Safety pause: sensitive page";
+      return;
+    }
+    if (isLiquidHost(location.href)) {
+      if (!settings.chatgpt.enabled) {
+        this.status = "ChatGPT — Liquid Glass off · original appearance";
+        return;
+      }
+      this.liquid = new LiquidGlass();
+      this.liquid.mount(settings.chatgpt, {
+        reduceMotion: settings.accessibility.reduceMotion,
+        highContrast: settings.accessibility.highContrast,
+        simple: settings.accessibility.simple || e.mode === "compatibility",
+      });
       return;
     }
     const adapter = selectAdapter(location.hostname, location.pathname);
@@ -333,6 +361,8 @@ export class Engine {
     return this.before;
   }
   unmount() {
+    this.liquid?.unmount();
+    this.liquid = null;
     this.observer?.disconnect();
     this.observer = null;
     this.abort?.abort();

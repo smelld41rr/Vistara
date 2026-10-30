@@ -1,3 +1,5 @@
+import { liquidControls } from "../shared/liquid-controls";
+import { isLiquidHost } from "../shared/liquid";
 import { scenes, sceneUrl } from "../shared/scenes";
 import { button, el } from "../shared/ui";
 import { connectTab } from "../shared/connection";
@@ -58,6 +60,18 @@ async function checkStatus() {
   }
 }
 function render() {
+  liquidControls(
+    document.querySelector("#liquid-controls")!,
+    () => settings.chatgpt,
+    (value) => {
+      settings.chatgpt = value;
+      update();
+    },
+  );
+  const liquidPanel = document.querySelector(
+    "#chatgpt-liquid-section",
+  ) as HTMLDetailsElement;
+  if (isLiquidHost(tab?.url ?? "")) liquidPanel.open = true;
   setStatus(settings);
   document.querySelector("#master")!.replaceChildren(
     toggle("Enable Vistara globally", settings.enabled, (v) => {

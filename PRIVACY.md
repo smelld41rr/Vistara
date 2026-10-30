@@ -1,4 +1,4 @@
-# Privacy — Vistara Theme World 2.0.0
+# Privacy — Vistara Theme World 2.1.0
 
 Vistara is a local appearance tool. No backend, accounts, analytics, trackers, remote fonts, remotely hosted code, remote wallpapers or product-initiated network requests are included. User-entered share cards are downloaded locally; nothing is posted automatically.
 
@@ -11,3 +11,5 @@ Permissions: `storage` for preferences; `activeTab` for the user-invoked active 
 Imported settings have size/type/range validation and do not accept executable code, raw CSS or remote image URLs. Image uploads accept raster PNG/JPEG/WebP only and are re-encoded to JPEG. Built-in scene artwork is generated locally from original SVG definitions, with no external resources or third-party characters. Sound is generated locally, off by default and subject to browser interaction rules.
 
 Future account/cloud/premium features would need separate consent and disclosure. None is implemented here.
+
+ChatGPT Liquid Glass preferences stay in local extension storage. Its content script uses element/role selectors and computed visual styles; it does not read or transmit conversation text, typed input, attachment names or auth data. Decorative elements are inert and hidden from assistive technology. The theme does not implement microphone/voice capture, upload, chat submission or work mode itself; existing site handlers remain responsible. No new Chrome permissions or network destinations are added for Liquid Glass.

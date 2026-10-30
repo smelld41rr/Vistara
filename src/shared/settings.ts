@@ -1,3 +1,4 @@
+import { liquidDefaults, validateLiquid, type LiquidSettings } from "./liquid";
 import { studioDefaults, validateStudio, type StudioSettings } from "./studio";
 export const themes = {
   midnight: {
@@ -73,6 +74,7 @@ export interface Preset {
   studio?: StudioSettings;
 }
 export interface Settings {
+  chatgpt: LiquidSettings;
   schemaVersion: 1;
   studio: StudioSettings;
   enabled: boolean;
@@ -88,6 +90,7 @@ export interface Settings {
   };
 }
 export const defaults: Settings = {
+  chatgpt: { ...liquidDefaults },
   studio: structuredClone(studioDefaults),
   schemaVersion: 1,
   enabled: true,
@@ -274,6 +277,7 @@ export function validate(raw: unknown): Settings {
     customPresets,
     accessibility,
     studio: validateStudio(o.studio),
+    chatgpt: validateLiquid(o.chatgpt),
   };
 }
 export function importSettings(text: string): Settings {

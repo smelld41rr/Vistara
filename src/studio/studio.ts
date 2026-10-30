@@ -1,3 +1,4 @@
+import { liquidControls } from "../shared/liquid-controls";
 import { load, save } from "../shared/storage";
 import { themes, type Settings } from "../shared/settings";
 import { scenes, sceneUrl, sceneById } from "../shared/scenes";
@@ -639,6 +640,7 @@ function route() {
     "wallpapers",
     "flow",
     "share",
+    "chatgpt",
   ].includes(id)
     ? id
     : "gallery";
@@ -722,6 +724,14 @@ chrome.storage.onChanged.addListener(() => {
       load()
         .then(async (s) => {
           settings = s;
+          liquidControls(
+            $("studio-liquid-controls"),
+            () => settings.chatgpt,
+            (value) => {
+              settings.chatgpt = value;
+              changed();
+            },
+          );
           uploaded = s.studio.wallpaper
             ? await imageData(s.studio.wallpaper).catch(() => null)
             : null;
@@ -743,6 +753,14 @@ async function start() {
         "This wallpaper is not stored in this browser. Scene artwork is shown instead.",
       );
   }
+  liquidControls(
+    $("studio-liquid-controls"),
+    () => settings.chatgpt,
+    (value) => {
+      settings.chatgpt = value;
+      changed();
+    },
+  );
   renderCategories();
   renderGallery();
   renderCustomize();

@@ -233,6 +233,13 @@ try {
   await check(
     "ChatGPT adapter preserves code, input, and SPA navigation",
     async () => {
+      await options.evaluate(async () => {
+        const result = await chrome.storage.local.get("settings");
+        const s = result.settings;
+        s.chatgpt.enabled = true;
+        await chrome.storage.local.set({ settings: s });
+      });
+      await wait();
       await page.goto("https://chatgpt.com/");
       await page.waitForSelector('[data-gf-adapter="chatgpt"]');
       assert.equal(await page.locator("code[data-gf-surface]").count(), 0);
@@ -248,13 +255,13 @@ try {
     },
   );
   await page.screenshot({
-    path: "screenshots/chatgpt-midnight.png",
+    path: "screenshots/chatgpt-liquid-general.png",
     fullPage: true,
   });
   await options.locator('[data-theme="arctic"]').first().click();
   await wait();
   await page.screenshot({
-    path: "screenshots/chatgpt-arctic.png",
+    path: "screenshots/chatgpt-liquid-general-updates.png",
     fullPage: true,
   });
   await check(
@@ -289,6 +296,7 @@ try {
       await page.evaluate(() => {
         const aside = document.createElement("aside");
         aside.textContent = "Dynamic sidebar";
+        aside.setAttribute("data-testid", "sidebar");
         document.body.append(aside);
       });
       await wait();

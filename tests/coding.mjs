@@ -613,7 +613,7 @@ try {
     "docs/coding-browser-results.json",
     JSON.stringify(
       {
-        version: "2.0.0",
+        version: JSON.parse(await readFile("package.json", "utf8")).version,
         date: new Date().toISOString(),
         type: "Compiled application and background bundles in Chromium, simulated Chrome APIs, representative local fixtures. Not live-site or native extension validation.",
         passed: results,
