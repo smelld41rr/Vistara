@@ -17,7 +17,7 @@ export function liquidControls(
   );
   const preview = el("div", {
     class: "liquid-control-preview",
-    "aria-label": "Local pastel Liquid Glass demo",
+    "aria-label": "Local Liquid Glass demo",
   });
   const side = el("div", { class: "liquid-demo-sidebar" }, "◈  ChatGPT");
   const main = el("div", { class: "liquid-demo-main" });
@@ -35,14 +35,16 @@ export function liquidControls(
     const value = get(),
       preset = liquidPresets[value.preset];
     preview.style.background = `radial-gradient(at 15% 15%,${preset.peach},transparent 65%),radial-gradient(at 80% 90%,${preset.lavender},transparent 60%),${preset.base}`;
-    side.style.backgroundColor = `rgba(255,255,255,${value.sidebarOpacity})`;
+    preview.style.color = value.preset === "ocean" ? "#eff6ff" : "#37343e";
+    const glass = value.preset === "ocean" ? "53,113,221" : "255,255,255";
+    side.style.backgroundColor = `rgba(${glass},${value.sidebarOpacity})`;
     const composer = preview.querySelector<HTMLElement>(
       ".liquid-demo-composer",
     )!;
-    composer.style.backgroundColor = `rgba(255,255,255,${value.composerOpacity})`;
+    composer.style.backgroundColor = `rgba(${glass},${value.composerOpacity})`;
     preview.style.setProperty("--liquid-preview-blur", value.blur / 3 + "px");
   };
-  const pick = el("select", { "aria-label": "Pastel color preset" });
+  const pick = el("select", { "aria-label": "Color preset" });
   for (const [id, preset] of Object.entries(liquidPresets)) {
     const option = el("option", { value: id }, preset.name);
     option.selected = id === s.preset;
@@ -52,7 +54,7 @@ export function liquidControls(
     change({ ...get(), preset: pick.value as LiquidSettings["preset"] });
     repaint();
   };
-  const presetLabel = el("label", { class: "field" }, "Pastel color preset");
+  const presetLabel = el("label", { class: "field" }, "Color preset");
   presetLabel.append(pick);
   container.append(presetLabel);
   for (const [key, label, min, max, step, unit] of [

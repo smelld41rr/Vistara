@@ -381,3 +381,209 @@ html[data-vistara-liquid="on"]
   [data-placeholder]::before {
   color: #79717d;
 }
+/* Electric Ocean: reference-inspired blue glass. Existing pastel presets remain intact. */
+html[data-vistara-liquid="on"][data-vl-preset="ocean"] {
+  color-scheme: dark;
+  --text-primary: #f2f7ff;
+  --text-secondary: #c1d5ff;
+  --text-tertiary: #a9c7f5;
+  --text-placeholder: #b5c9ed;
+  --main-surface-secondary: #153f816e;
+  --main-surface-tertiary: #306ac17a;
+  --sidebar-surface-secondary: #3380db40;
+  --bg-secondary: #153f816e;
+  --bg-tertiary: #306ac17a;
+  --bg-elevated-primary: #102b60;
+  --bg-elevated-secondary: #173c77;
+  --border-light: #8fcdff66;
+  --border-medium: #78b7ff80;
+}
+html[data-vistara-liquid="on"][data-vl-preset="ocean"] body {
+  color: #f2f7ff;
+}
+html[data-vl-preset="ocean"] .vl-aurora {
+  background:
+    radial-gradient(ellipse at 82% 24%, #147fd78c, transparent 43%),
+    radial-gradient(ellipse at 40% 5%, #149fdb8c, transparent 36%),
+    radial-gradient(ellipse at 76% 77%, #4448df80, transparent 42%),
+    radial-gradient(ellipse at 10% 72%, #2044b5b3, transparent 45%),
+    linear-gradient(135deg, #061435, #0a3178 48%, #071746);
+}
+/* The reflected floor uses only decorative layers, never a foreground filter. */
+html[data-vl-preset="ocean"] [data-vl-decoration]::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  height: 30%;
+  transform: perspective(420px) rotateX(35deg) rotate(-2deg);
+  background:
+    repeating-linear-gradient(176deg, transparent 0 13px, #6cbaff24 14px, transparent 16px 27px),
+    radial-gradient(ellipse at 44% 45%, #346bffb3, transparent 43%),
+    linear-gradient(173deg, transparent 25%, #83dfff80 26%, #174bffa6 27%, transparent 31%, #ae81ff66 52%, #23ccff99 54%, transparent 56%),
+    linear-gradient(#081a4566, #07153ed9);
+}
+html[data-vl-preset="ocean"] [data-vl-decoration]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 22% 20%, #8879ff 0 1px, transparent 2px),
+    radial-gradient(circle at 83% 37%, #4adaff 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 16%, #9386ff 0 1px, transparent 2px);
+  background-size: 197px 223px, 307px 191px, 271px 283px;
+  opacity: .24;
+  mask-image: linear-gradient(90deg, transparent 15%, #000 22%, transparent 60%, #000 90%);
+}
+html[data-vl-preset="ocean"] .vl-orb {
+  border: 1px solid #9cefff9c;
+  background:
+    radial-gradient(ellipse at 76% 14%, #ffb7ffcc, transparent 17%),
+    radial-gradient(ellipse at 92% 57%, #b77aff9c, transparent 27%),
+    radial-gradient(ellipse at 15% 80%, #20dfff9c, transparent 25%),
+    radial-gradient(ellipse at 45% 40%, #0e246f05 30%, #1c51cf66 65%, #91f8ffb3 83%, #a987ffb3 90%, #1222551a 97%);
+  box-shadow: inset 3px 4px 7px #a2f5ffb3, inset -8px -12px 26px #705aff99,
+    inset 0 0 58px #2944a966, 0 -3px 18px #16dbff66, 0 8px 38px #4c45ff80;
+  opacity: calc(.72 + var(--vl-intensity) * .28);
+}
+html[data-vl-preset="ocean"] .vl-orb-top {
+  width: min(55vw, 980px);
+  aspect-ratio: 1.4;
+  right: -1vw;
+  top: 13vh;
+  transform: rotate(-27deg);
+}
+html[data-vl-preset="ocean"] .vl-orb-left {
+  width: min(42vw, 700px);
+  aspect-ratio: 1.25;
+  left: -9vw;
+  bottom: 3vh;
+  transform: rotate(28deg);
+}
+html[data-vl-preset="ocean"] .vl-orb-right {
+  width: min(32vw, 550px);
+  aspect-ratio: 1.25;
+  right: -17vw;
+  bottom: 3vh;
+  transform: rotate(-22deg);
+}
+html[data-vl-preset="ocean"] .vl-aurora::after {
+  content: "";
+  position: absolute;
+  width: clamp(70px, 8.5vw, 150px);
+  aspect-ratio: 1;
+  left: 28%;
+  top: 29%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 75% 20%, #d98affb3, transparent 25%),
+    radial-gradient(circle at 22% 78%, #64faffbf, transparent 30%),
+    radial-gradient(circle at 40% 40%, #122d63aa 35%, #2d67d280 60%, #a0ffffc9 72%, #7064ff99 78%, transparent 85%);
+  box-shadow: inset 2px 3px 9px #84deff80, inset -4px -5px 9px #706affb3, 0 0 12px #137dce66;
+}
+html[data-vl-preset="ocean"] [data-vl-part="sidebar"] {
+  background: rgba(48, 100, 186, var(--vl-sidebar-opacity)) !important;
+  color: #f0f6ff;
+  border-radius: 24px;
+  box-shadow: inset 0 0 0 1px #a4d7ff80, inset 0 1px 14px #b1d4ff26,
+    0 0 20px #528fff38, 8px 0 30px #05205a40;
+  backdrop-filter: blur(var(--vl-blur)) saturate(1.5);
+}
+html[data-vl-preset="ocean"] [data-vl-part="sidebar"] :where(a, button):hover {
+  background: #4298ff40;
+}
+html[data-vl-preset="ocean"] [data-vl-part="sidebar"] :where([aria-current="page"], [data-active="true"]) {
+  background: linear-gradient(120deg, #6859ffba, #1756bc99 55%, #2ae3ff9c) !important;
+  box-shadow: inset 0 0 0 1px #a9cfff99, inset 0 1px 10px #c9f8ff80,
+    0 0 18px #594bffbf;
+}
+html[data-vl-preset="ocean"] [data-vl-part="home-title"] {
+  color: #f3f7ff;
+  font-weight: 600;
+  text-shadow: 0 2px 20px #09214b80;
+}
+html[data-vl-preset="ocean"] [data-vl-part="composer"] {
+  background: linear-gradient(105deg, #6ba8f02e, #c4c9ff26 45%, #1360ba33),
+    rgba(39, 88, 170, var(--vl-composer-opacity)) !important;
+  color: #f4f8ff;
+  border-radius: 48px !important;
+  box-shadow: inset 0 0 0 1px #a9efffdb, inset 0 2px 12px #a2e9ff8c,
+    inset 0 -2px 9px #6c9dff9c, 0 0 22px #2393ff80, 0 14px 36px #03174080;
+  backdrop-filter: blur(var(--vl-blur)) saturate(1.5);
+}
+html[data-vl-preset="ocean"] [data-vl-part="composer"]:focus-within {
+  box-shadow: inset 0 0 0 1px #c4f8ff, inset 0 2px 14px #a2e9ff99,
+    0 0 0 2px #57cfff55, 0 0 28px #2393ff99, 0 14px 36px #03174080;
+}
+html[data-vl-preset="ocean"] [data-vl-part="composer"] :where(textarea, [contenteditable="true"]) {
+  color: #f4f8ff;
+  caret-color: #9ff7ff;
+}
+html[data-vl-preset="ocean"] [data-vl-part="composer"] textarea::placeholder,
+html[data-vl-preset="ocean"] [data-vl-part="composer"] [data-placeholder]:empty::before,
+html[data-vl-preset="ocean"] [data-vl-part="composer"] #prompt-textarea [data-placeholder]::before {
+  color: #bacded !important;
+}
+html[data-vl-preset="ocean"] [data-vl-part="composer"] button { color: #eef7ff; }
+html[data-vl-preset="ocean"] [data-vl-part="composer"] :where(button[data-testid="send-button"], button[data-testid="composer-speech-button"], button[data-testid="voice-button"]) {
+  background: linear-gradient(135deg, #55efff, #2389ff 62%, #5956ff);
+  box-shadow: inset 0 0 0 1px #b9fcffcc, inset 0 2px 9px #c0ffff8c, 0 0 18px #29dfff9c;
+}
+html[data-vl-preset="ocean"] [data-vl-part="segment"],
+html[data-vl-preset="ocean"] [data-vl-part="suggestion"] {
+  color: #f1f6ff;
+  background: linear-gradient(120deg, #2378b940, #6965f23b), #244c9b66 !important;
+  box-shadow: inset 0 0 0 1px #8dbbff66, inset 0 1px 10px #9ad7ff26, 0 5px 20px #07296840;
+  backdrop-filter: blur(16px);
+}
+html[data-vl-preset="ocean"] [data-vl-part="suggestion"] { border-radius: 16px; }
+html[data-vl-preset="ocean"] [data-vl-part="segment"] :where([aria-selected="true"], [aria-pressed="true"]) {
+  background: linear-gradient(130deg, #28cdffb3, #4974ffbf 60%, #7852ff99) !important;
+  box-shadow: inset 0 0 0 1px #adebff99, inset 0 1px 10px #baf5ff80, 0 0 18px #25c7ff80;
+}
+html[data-vl-preset="ocean"] [data-vl-part="message"] { background: #2859a966; }
+html[data-vl-preset="ocean"] [data-vl-part="dialog"],
+html[data-vl-preset="ocean"] [data-vl-part="menu"] {
+  background: #102b60f5 !important;
+  color: #edf6ff;
+  box-shadow: inset 0 0 0 1px #84c3ff66, 0 18px 60px #020d2c99;
+}
+html[data-vl-preset="ocean"] [data-vl-part="main"] .markdown {
+  color: #eff5ff;
+  --tw-prose-body: #eff5ff;
+  --tw-prose-headings: #f6f9ff;
+  --tw-prose-links: #81e9ff;
+  --tw-prose-bold: #f6f9ff;
+  --tw-prose-counters: #c1d5ff;
+  --tw-prose-bullets: #a9c7f5;
+  --tw-prose-quotes: #d1dfff;
+  --tw-prose-code: #d6d4ff;
+}
+html[data-vl-preset="ocean"] [data-vl-part="main"] :where(.markdown table, [data-message-author-role] table) {
+  background: #102a5d99;
+  border-color: #91bcf580;
+}
+html[data-vl-preset="ocean"] [data-vl-part] :where(button, a, textarea, [contenteditable="true"]):focus-visible {
+  outline-color: #8cf4ff;
+}
+html[data-vl-preset="ocean"][data-vl-contrast="true"] :where([data-vl-part="sidebar"], [data-vl-part="composer"]) {
+  background: #102650 !important;
+  backdrop-filter: none;
+}
+@supports not (backdrop-filter: blur(1px)) {
+  html[data-vl-preset="ocean"] :where([data-vl-part="sidebar"], [data-vl-part="composer"]) {
+    background: #153267 !important;
+  }
+}
+@media (max-width: 760px) {
+  html[data-vl-preset="ocean"] .vl-orb-top { width: 100vw; right: -35vw; top: 28vh; }
+  html[data-vl-preset="ocean"] .vl-orb-left { width: 85vw; left: -48vw; bottom: 8vh; }
+}
+@media (forced-colors: active) {
+  html[data-vl-preset="ocean"] [data-vl-part],
+  html[data-vl-preset="ocean"] [data-vl-part="main"] .markdown {
+    background: Canvas !important;
+    color: CanvasText !important;
+    box-shadow: none !important;
+  }
+}

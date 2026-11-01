@@ -1,4 +1,4 @@
-VISTARA - THEME WORLD 2.1.0
+VISTARA - THEME WORLD 2.2.0
 
 1. Extract the extension ZIP into a NEW folder.
 2. Open chrome://extensions in Chrome and enable Developer mode.
@@ -24,3 +24,8 @@ Disable the Liquid Glass switch to restore the original ChatGPT appearance.
 After an extension update, press Reload in chrome://extensions and reload the
 ChatGPT tab once. Later slider/preset changes do not require a page reload.
 Do not uninstall for routine updates if you want to keep settings/wallpapers.
+
+BLUE REFERENCE LOOK (2.2)
+Choose Color preset > Electric ocean - reference in the Liquid Glass controls.
+Existing installations retain the previously selected preset; choose Ocean manually.
+New installations/reset use Ocean. Chrome tabs/address bar are not themed.

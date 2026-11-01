@@ -18,6 +18,8 @@ const rules: Record<string, string> = {
   dialog: '[role="dialog"]',
   menu: '[role="menu"], [role="listbox"]',
   code: "pre:has(code)",
+  suggestion: '[data-testid="suggestion-card"], [data-testid="starter-prompt"], [data-testid="conversation-starter"], [data-testid="prompt-suggestion"]',
+
 };
 export class LiquidGlass {
   private style: HTMLStyleElement | null = null;
@@ -112,6 +114,7 @@ export class LiquidGlass {
       this.variable(root, name, value);
     for (const [name, value] of Object.entries({
       "data-vistara-liquid": "on",
+      "data-vl-preset": settings.preset,
       "data-glassflow": "on",
       "data-gf-adapter": "chatgpt",
       "data-vl-contrast": String(highContrast || simple),

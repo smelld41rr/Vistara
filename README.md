@@ -1,4 +1,4 @@
-# Vistara — Theme World · Studio 2.1
+# Vistara — Theme World · Studio 2.2
 
 Your code. Your corner of the universe.
 
@@ -8,7 +8,7 @@ A local-first Chrome Manifest V3 appearance extension with a new Theme Studio, t
 
 ## Install without building
 
-1. Extract `release/Vistara-Theme-World-v2.1.0.zip` into a new folder.
+1. Extract `release/Vistara-Theme-World-v2.2.0.zip` into a new folder.
 2. Open `chrome://extensions` in Chrome. Turn **Developer mode** on.
 3. Choose **Load unpacked** and select the extracted folder containing `manifest.json`.
 4. Alternatively, select this source project's root folder or its `dist/` folder. Both manifests are generated and validated.
@@ -22,11 +22,11 @@ The v2 source and prebuilt ZIPs are prepared for GitHub delivery at the user's r
 
 Open the popup → expand **ChatGPT — Liquid Glass** → enable the switch. The same controls are in Studio → **ChatGPT Liquid Glass**. The feature is off by default and applies only to the exact `chatgpt.com` hostname. The global master and per-site exclusions still win.
 
-The reference-inspired skin adds a peach/lavender/pink/sky aurora, three decorative glass orbs, a frosted native sidebar and pill composer, and subtle styling for existing segments, dialogs and message shells. It does not add fake Chat/Work controls or replace ChatGPT's frontend. OFF now restores original ChatGPT instead of falling back to the older generic ChatGPT treatment. Coding-platform scenes and preferences stay independent.
+The new Electric Ocean reference preset adds a deep blue/cyan backdrop, glossy violet bubbles, reflected floor, luminous sidebar selection, cyan pill composer and glass surfaces for recognized existing suggestion cards. Four previous pastel presets remain available. It does not add fake Chat/Work controls or replace ChatGPT's frontend. OFF now restores original ChatGPT instead of falling back to the older generic ChatGPT treatment. Coding-platform scenes and preferences stay independent.
 
-Controls include glass intensity, panel/ambient blur, backdrop brightness, four pastel presets, sidebar/composer opacity, optional animation, reduced motion and reset. These settings are local and do not sync. Lower transparency-slider values mean lower glass opacity/more transparency. Background animation is off by default, pauses in hidden tabs and respects both OS and user reduced motion. Compatibility/simple settings use more solid panels with reduced effects. Browser chrome is not themed.
+Controls include glass intensity, panel/ambient blur, backdrop brightness, Electric Ocean plus four pastel presets, sidebar/composer opacity, optional animation, reduced motion and reset. These settings are local and do not sync. Lower transparency-slider values mean lower glass opacity/more transparency. Background animation is off by default, pauses in hidden tabs and respects both OS and user reduced motion. Compatibility/simple settings use more solid panels with reduced effects. Browser chrome is not themed.
 
-After updating the unpacked extension, press **Reload** at `chrome://extensions` and reload the ChatGPT tab once. Later preference changes apply live. Avoid uninstalling if you want to retain extension storage. See [Liquid Glass implementation and validation](docs/LIQUID_GLASS_REPORT.md) for actual fixture evidence and manual live QA limitations.
+After updating the unpacked extension, press **Reload** at `chrome://extensions` and reload the ChatGPT tab once. Later preference changes apply live. Avoid uninstalling if you want to retain extension storage. See [Liquid Glass implementation and validation](docs/LIQUID_GLASS_REPORT.md) for earlier fixture evidence and manual live QA limitations. See [Electric Ocean update](docs/ELECTRIC_OCEAN_REPORT.md) for v2.2 changes.
 
 ## The experience
 

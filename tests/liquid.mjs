@@ -181,7 +181,7 @@ try {
     },
   );
   await check(
-    "pastel backdrop covers viewport behind clickable content and preserves composer geometry",
+    "reference ocean backdrop covers viewport behind clickable content and preserves composer geometry",
     async () => {
       const bounds = await page.locator("[data-vl-decoration]").boundingBox();
       assert.equal(bounds.width, 1672);
@@ -202,11 +202,42 @@ try {
       assert.ok(Math.abs(current.width - original.composer.width) < 1);
       assert.ok(Math.abs(current.height - original.composer.height) < 1);
       await page.screenshot({
-        path: "screenshots/liquid/home-peach-1672.png",
+        path: "screenshots/liquid/home-ocean-1672.png",
         fullPage: true,
       });
     },
   );
+  await check("ocean reference styles preserve native suggestion handlers and pastel preset switching", async () => {
+    assert.equal(await page.locator("html").getAttribute("data-vl-preset"), "ocean");
+    await page.evaluate(() => {
+      const group = document.createElement("div");
+      group.id = "fixture-suggestions";
+      group.style.cssText = "display:grid;gap:9px;width:min(760px,100%)";
+      for (const text of ["Review a workflow safely", "Plan this week's work", "Summarize an email"]) {
+        const card = document.createElement("button");
+        card.dataset.testid = "suggestion-card";
+        card.textContent = text + "   →";
+        card.style.cssText = "text-align:left;padding:15px 20px";
+        card.onclick = () => { document.querySelector("#prompt-textarea").textContent = text; };
+        group.append(card);
+      }
+      document.querySelector("#home").append(group);
+    });
+    await page.waitForSelector('[data-vl-part="suggestion"]');
+    await page.getByRole("button", {name:"Review a workflow safely"}).click();
+    assert.equal(await page.locator("#prompt-textarea").textContent(), "Review a workflow safely");
+    await page.locator("#prompt-textarea").fill("");
+    const color = await page.locator("#prompt-textarea").evaluate(el => getComputedStyle(el).color);
+    assert.equal(color, "rgb(244, 248, 255)");
+    assert.equal(await page.locator('[data-testid="suggestion-card"]').count(), 3);
+    await page.screenshot({path:"screenshots/liquid/reference-ocean.png",fullPage:true});
+    await popup.getByRole("combobox", {name:"Color preset"}).selectOption("peach");
+    await page.waitForSelector('html[data-vl-preset="peach"]');
+    assert.equal(await page.locator("#prompt-textarea").evaluate(el=>getComputedStyle(el).color), "rgb(57, 53, 64)");
+    await popup.getByRole("combobox", {name:"Color preset"}).selectOption("ocean");
+    await page.waitForSelector('html[data-vl-preset="ocean"]');
+    await page.locator("#fixture-suggestions").evaluate(el=>el.remove());
+  });
   await check(
     "all popup effects persist and apply live to the page",
     async () => {
@@ -223,7 +254,7 @@ try {
         .getByRole("slider", { name: "Sidebar transparency", exact: true })
         .dispatchEvent("input");
       await popup
-        .getByRole("combobox", { name: "Pastel color preset" })
+        .getByRole("combobox", { name: "Color preset" })
         .selectOption("lavender");
       await wait();
       assert.equal(
@@ -246,7 +277,7 @@ try {
         .waitFor();
       assert.equal(
         await popup
-          .getByRole("combobox", { name: "Pastel color preset" })
+          .getByRole("combobox", { name: "Color preset" })
           .inputValue(),
         "lavender",
       );
@@ -297,7 +328,7 @@ try {
       );
       assert.equal(await page.locator("table td").first().textContent(), "One");
       await page.screenshot({
-        path: "screenshots/liquid/conversation-peach.png",
+        path: "screenshots/liquid/conversation-ocean.png",
         fullPage: true,
       });
     },
@@ -472,7 +503,7 @@ try {
         true,
       );
       await studio
-        .getByRole("combobox", { name: "Pastel color preset" })
+        .getByRole("combobox", { name: "Color preset" })
         .selectOption("sky");
       await wait();
       await page.reload();
@@ -615,7 +646,7 @@ try {
     "docs/liquid-browser-results.json",
     JSON.stringify(
       {
-        version: "2.1.0",
+        version: "2.2.0",
         date: new Date().toISOString(),
         method:
           "Compiled extension bundles in Chromium with simulated Chrome APIs and local representative ChatGPT/coding fixtures. No live/authenticated or native MV3 verification.",

@@ -1,11 +1,12 @@
 {
-  "version": "2.1.0",
-  "date": "2026-10-30T18:33:40.630Z",
+  "version": "2.2.0",
+  "date": "2026-11-01T07:03:11.268Z",
   "method": "Compiled extension bundles in Chromium with simulated Chrome APIs and local representative ChatGPT/coding fixtures. No live/authenticated or native MV3 verification.",
   "passed": [
     "default OFF leaves original ChatGPT appearance and author tokens intact",
     "popup toggle enables real compiled content bundle without reloading",
-    "pastel backdrop covers viewport behind clickable content and preserves composer geometry",
+    "reference ocean backdrop covers viewport behind clickable content and preserves composer geometry",
+    "ocean reference styles preserve native suggestion handlers and pastel preset switching",
     "all popup effects persist and apply live to the page",
     "multiline typing, send and streamed fixture updates preserve native handlers",
     "existing menus, file selection, microphone state and Chat/Work switch remain functional",

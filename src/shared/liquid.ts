@@ -1,4 +1,12 @@
 export const liquidPresets = {
+  ocean: {
+    name: "Electric ocean · reference",
+    peach: "#146BCE",
+    lavender: "#5548ED",
+    pink: "#CF7CFF",
+    sky: "#33DFFF",
+    base: "#061C52",
+  },
   peach: {
     name: "Peach aurora",
     peach: "#F8D9C8",
@@ -48,7 +56,7 @@ export const liquidDefaults: LiquidSettings = {
   intensity: 0.65,
   blur: 30,
   brightness: 1,
-  preset: "peach",
+  preset: "ocean",
   animation: false,
   sidebarOpacity: 0.24,
   composerOpacity: 0.46,
@@ -68,7 +76,7 @@ export function validateLiquid(raw: unknown): LiquidSettings {
       result[key] = value;
     } else if (key === "preset") {
       if (typeof value !== "string" || !Object.hasOwn(liquidPresets, value))
-        throw Error("Unknown pastel preset");
+        throw Error("Unknown Liquid Glass preset");
       result.preset = value as LiquidSettings["preset"];
     } else {
       const limits: Record<string, [number, number]> = {

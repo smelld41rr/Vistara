@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Vistara - Theme World",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Your coding world, reimagined. Nine coding adapters, local wallpapers, glass panels, focus and your own Theme Studio.",
   "permissions": [
     "storage",
